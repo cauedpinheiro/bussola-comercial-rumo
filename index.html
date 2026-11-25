@@ -65,7 +65,7 @@
    Base
    ========================================================================== */
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 72px; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+html { scroll-behavior: smooth; scroll-padding-top: 64px; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 body {
   margin: 0; background: var(--papel-2); color: var(--tinta);
   font: 400 16px/1.6 var(--f-texto);
@@ -282,7 +282,7 @@ a { color: inherit; }
 .capa-palco { position: relative; height: min(72svh, 660px); min-height: 380px; }
 .capa-palco canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .capa-seta {
-  position: absolute; left: 50%; bottom: 20px; width: 44px; height: 44px; margin-left: -22px; display: inline-flex; align-items: center; justify-content: center;
+  position: absolute; left: 50%; bottom: 96px; width: 44px; height: 44px; margin-left: -22px; display: inline-flex; align-items: center; justify-content: center;
   border-radius: var(--r-pilula); color: var(--capa-tinta-2); border: 1px solid color-mix(in srgb, var(--capa-tinta-2) 40%, transparent);
   transition: background-color .14s ease, color .14s ease;
 }
@@ -411,7 +411,7 @@ html:not(.sem-js) [data-capa-item] { animation: capa-entra .9s var(--e-entrar) b
   to { border-style: solid; border-color: var(--rumo); background-color: var(--rumo-suave); }
 }
 @keyframes slot-acende { from { opacity: .3; } to { opacity: 1; } }
-@keyframes frase-acende { from { opacity: .3; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes frase-acende { from { opacity: .6; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 
 /* ==========================================================================
    3. Projeto: diagrama SVG e painel
@@ -694,7 +694,7 @@ html:not(.sem-js) [data-revela].revelado { opacity: 1; transform: none; }
   .capa { min-height: 0; padding: 32px 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .capa-miolo { grid-template-columns: 1fr; }
   .capa h1 { font-size: 40px; }
-  .secao { padding-block: 24px; break-inside: avoid-page; }
+  .secao { padding-block: 24px; break-inside: auto; }
   html:not(.sem-js) [data-revela], html:not(.sem-js) [data-capa-item], html:not(.sem-js) .linha-tempo .lt-item { opacity: 1 !important; transform: none !important; animation: none !important; transition: none !important; }
   .linha-tempo::after { transform: none; opacity: 1; }
   .linha-tempo { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -704,6 +704,18 @@ html:not(.sem-js) [data-revela].revelado { opacity: 1; transform: none; }
   .amb-troca { display: block; }
   .segmentado { display: none; }
   .diagrama-svg, .painel-no, .anatomia-cartao, .motor, .aceite-card { box-shadow: none; }
+  /* o app não imprime; a seção dele sairia só com o título */
+  #bussola { display: none !important; }
+  /* o diagrama do projeto cabe numa folha; a seção pode quebrar entre o texto e o diagrama */
+  .sec-projeto, #projeto { break-inside: auto; }
+  .diagrama-svg { break-inside: avoid; }
+  .diagrama-svg svg { max-height: 200mm; width: auto; max-width: 100%; margin-inline: auto; }
+  /* o painel "Selecione uma etapa" é interação de tela e, impresso, ocupava uma folha sozinho */
+  .painel-no { display: none !important; }
+  /* título de seção nunca fica sozinho no pé da folha */
+  .cabeca-secao, h2 { break-after: avoid; }
+  .anatomia { break-inside: auto; }
+  .anatomia-cartao { break-inside: avoid; }
 }
 
 /* Estilos da Bússola Comercial. Tudo sob .bus-app, classes com prefixo bus-.
@@ -724,7 +736,9 @@ html:not(.sem-js) [data-revela].revelado { opacity: 1; transform: none; }
 .bus-app kbd { font: 500 12px/18px var(--f-mono); padding: 0 6px; border: 1px solid var(--traco-forte); border-radius: 6px; color: var(--tinta-2); background: var(--papel); }
 
 /* ---------- Janela ---------- */
-.bus-app .bus-janela { position: relative; display: flex; flex-direction: column; height: 100%; min-height: 0; overflow: hidden; background: var(--papel); border: 1px solid var(--traco); border-radius: var(--r-janela); box-shadow: var(--sombra-3); }
+.bus-app .bus-janela { position: relative; display: flex; flex-direction: column; height: 100%; min-height: 0; overflow: hidden; overflow: clip; background: var(--papel); border: 1px solid var(--traco); border-radius: var(--r-janela); box-shadow: var(--sombra-3); }
+/* overflow: clip corta como hidden, mas não cria contêiner rolável: foco ou scrollIntoView na gaveta (fora da tela até abrir)
+   não consegue deslocar o app. O hidden na linha anterior fica de reserva para navegador sem suporte a clip. */
 .bus-app .bus-topo { position: relative; z-index: 6; flex: none; display: flex; align-items: center; gap: 12px; height: 64px; padding: 0 16px; border-bottom: 1px solid var(--traco); background: var(--papel); }
 .bus-app .bus-barra-av .bus-avatar { width: 36px; height: 36px; }
 .bus-app .bus-barra-titulo { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 10px; min-width: 0; }
@@ -856,10 +870,12 @@ html:not(.sem-js) [data-revela].revelado { opacity: 1; transform: none; }
 /* ---------- Cartão, KPI, tabela, legenda ---------- */
 .bus-app .bus-cartao { padding: 16px; border: 1px solid var(--traco); border-radius: var(--r-cartao); background: var(--papel); box-shadow: var(--sombra-1); width: 100%; min-width: 0; }
 .bus-app .bus-kpis { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
-.bus-app .bus-kpi { flex: 1 1 140px; display: flex; flex-direction: column; gap: 2px; min-width: 0; padding: 12px 14px; border-radius: var(--r-controle); background: var(--papel-2); border: 1px solid var(--traco); }
+.bus-app .bus-kpi { flex: 1 1 140px; container-type: inline-size; display: flex; flex-direction: column; gap: 2px; min-width: 0; padding: 12px 14px; border-radius: var(--r-controle); background: var(--papel-2); border: 1px solid var(--traco); }
 .bus-app .bus-kpi-rot { font: 500 12px/16px var(--f-texto); letter-spacing: 0.01em; color: var(--tinta-3); }
-.bus-app .bus-kpi-num { align-self: flex-start; padding: 0; border: 0; background: transparent; font: 650 clamp(24px, 2.4vw, 32px)/1.1 var(--f-disp); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; color: var(--tinta); text-align: left; }
-.bus-app .bus-kpi:first-child .bus-kpi-num { font-size: clamp(32px, 3.3vw, 46px); line-height: 1; }
+/* O tamanho do número vem da largura do cartão (cqi), igual em todos os cartões da fila; a unidade fica menor e com peso normal. */
+.bus-app .bus-kpi-num { align-self: flex-start; display: inline-flex; align-items: baseline; gap: 0.14em; max-width: 100%; min-width: 0; padding: 0; border: 0; background: transparent; font: 650 clamp(22px, 15cqi, 40px)/1.1 var(--f-disp); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--tinta); text-align: left; }
+.bus-app .bus-kpi-un { font: 450 0.5em/1 var(--f-texto); letter-spacing: 0; color: var(--tinta-2); }
+.bus-app .bus-kpi.alerta .bus-kpi-un { color: var(--alerta); }
 .bus-app button.bus-kpi-num { border-bottom: 2px dotted var(--ceu); border-radius: 2px; }
 .bus-app .bus-kpi.alerta .bus-kpi-num { color: var(--alerta); }
 .bus-app .bus-kpi-sub { font: 400 13px/18px var(--f-texto); color: var(--tinta-2); }
@@ -1011,7 +1027,8 @@ html:not(.sem-js) [data-revela].revelado { opacity: 1; transform: none; }
 .bus-app .bus-pa-vazio { padding: 24px 12px; text-align: center; color: var(--tinta-2); }
 
 /* ---------- Apresentação guiada e avisos ---------- */
-.bus-app .bus-demo { position: absolute; top: 76px; left: 50%; z-index: 22; display: flex; align-items: center; gap: 16px; width: min(760px, calc(100% - 24px)); padding: 10px 12px 10px 16px; transform: translateX(-50%); border: 1px solid var(--traco-forte); border-radius: var(--r-cartao); background: var(--papel); box-shadow: var(--sombra-2); animation: bus-entra 300ms var(--e-entrar) both; }
+/* Centrada por margem automática: a animação bus-entra termina em transform: none e desfaria um translateX(-50%), empurrando a barra para fora da janela. */
+.bus-app .bus-demo { position: absolute; top: 76px; left: 0; right: 0; margin-inline: auto; z-index: 22; display: flex; align-items: center; gap: 16px; width: min(760px, calc(100% - 24px)); padding: 10px 12px 10px 16px; border: 1px solid var(--traco-forte); border-radius: var(--r-cartao); background: var(--papel); box-shadow: var(--sombra-2); animation: bus-entra 300ms var(--e-entrar) both; }
 .bus-app .bus-demo-info { flex: 1; min-width: 0; display: grid; gap: 2px; }
 .bus-app .bus-demo-passo { font: 600 12px/16px var(--f-texto); letter-spacing: 0.06em; text-transform: uppercase; color: var(--tinta-3); }
 .bus-app .bus-demo-rot { font: 600 14px/20px var(--f-texto); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -1023,45 +1040,80 @@ html:not(.sem-js) [data-revela].revelado { opacity: 1; transform: none; }
 .bus-app .bus-toast.sai { opacity: 0; }
 .bus-app .bus-toast .bus-btn { min-height: 28px; padding: 0 8px; color: inherit; text-decoration: underline; }
 
-/* ---------- Catálogo ao vivo ---------- */
+/* ---------- Catálogo ao vivo: uma coluna, cadastro rápido no topo, lista em linhas ---------- */
 .bus-app .bus-catalogo { overflow: hidden; }
-.bus-app .bus-cat-cab { flex: none; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px; padding: 20px 24px 16px; }
-.bus-app .bus-cat-titulo { font: 620 24px/28px var(--f-disp); letter-spacing: -0.02em; }
-.bus-app .bus-cat-contador { display: block; margin-top: 4px; font: 500 14px/20px var(--f-texto); color: var(--tinta-2); font-variant-numeric: tabular-nums; }
-.bus-app .bus-prog { display: block; width: 160px; height: 4px; margin-top: 8px; border-radius: 2px; background: var(--papel-3); overflow: hidden; }
+.bus-app .bus-cat-topo { flex: none; padding: 12px 24px 12px; border-bottom: 1px solid var(--traco); background: var(--papel); }
+.bus-app .bus-cat-cab { display: flex; align-items: center; gap: 12px 20px; min-height: 36px; }
+.bus-app .bus-cat-titulo { flex: none; font: 620 20px/28px var(--f-disp); letter-spacing: -0.02em; }
+.bus-app .bus-cat-prog { flex: 1; min-width: 0; display: flex; align-items: center; gap: 12px; }
+.bus-app .bus-cat-contador { font: 500 14px/20px var(--f-texto); color: var(--tinta-2); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.bus-app .bus-prog { display: block; flex: 0 1 120px; width: 120px; height: 4px; border-radius: 2px; background: var(--papel-3); overflow: hidden; }
 .bus-app .bus-prog i { display: block; width: 100%; height: 100%; background: var(--ceu); transform: scaleX(var(--p, 0)); transform-origin: 0 50%; transition: transform 320ms var(--e-entrar); }
-.bus-app .bus-cat-acoes { display: flex; flex-wrap: wrap; gap: 8px; }
-.bus-app .bus-confirma { flex: none; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin: 0 24px 16px; padding: 12px 16px; border: 1px solid var(--alerta); border-radius: var(--r-controle); background: var(--alerta-fundo); color: var(--tinta); }
+.bus-app .bus-cat-acoes { flex: none; display: flex; flex-wrap: wrap; gap: 8px; }
+.bus-app .bus-confirma { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin: 12px 0 0; padding: 12px 16px; border: 1px solid var(--alerta); border-radius: var(--r-controle); background: var(--alerta-fundo); color: var(--tinta); }
 .bus-app .bus-confirma-botoes { display: flex; gap: 8px; }
-.bus-app .bus-cat-corpo-grade { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(300px, 380px) minmax(0, 1fr); gap: 24px; padding: 0 24px 24px; overflow-y: auto; align-items: start; }
-.bus-app .bus-cat-form-wrap { position: sticky; top: 0; }
-.bus-app .bus-form { display: grid; gap: 16px; padding: 20px; border: 1px solid var(--traco); border-radius: var(--r-cartao); background: var(--papel); box-shadow: var(--sombra-1); }
-.bus-app .bus-form-titulo { font: 620 16px/22px var(--f-disp); }
-.bus-app .bus-campo { display: grid; gap: 6px; min-width: 0; margin: 0; padding: 0; border: 0; }
-.bus-app .bus-campo label, .bus-app .bus-campo legend { padding: 0; font: 500 13px/18px var(--f-texto); color: var(--tinta); }
-.bus-app .bus-campo-txt { width: 100%; min-height: 44px; padding: 10px 12px; border: 1px solid var(--traco-forte); border-radius: var(--r-controle); background: var(--papel); color: var(--tinta); font: 400 14px/20px var(--f-texto); resize: vertical; }
-.bus-app .bus-opcoes { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* Barra de cadastro rápido */
+.bus-app .bus-cad { display: grid; gap: 8px; margin-top: 10px; padding: 10px; border: 1px solid var(--traco); border-radius: var(--r-cartao); background: var(--papel-2); }
+.bus-app .bus-cad-linha { display: flex; gap: 12px; }
+.bus-app .bus-cad-add { flex: none; min-height: 48px; padding: 0 22px; }
+.bus-app .bus-cad-opcoes { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px; }
+.bus-app .bus-cad-grupo { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.bus-app .bus-cad-fontes { align-items: flex-start; }
+.bus-app .bus-cad-rot { flex: none; font: 500 12px/16px var(--f-texto); color: var(--tinta-2); }
+.bus-app .bus-cad-fontes .bus-cad-rot { padding-top: 6px; }
+.bus-app .bus-cad-erro:empty { height: 0; min-height: 0; margin-top: -8px; }
+.bus-app .bus-campo-txt { width: 100%; min-height: 44px; padding: 10px 12px; border: 1px solid var(--traco-forte); border-radius: var(--r-controle); background: var(--papel); color: var(--tinta); font: 400 14px/20px var(--f-texto); }
+.bus-app .bus-campo-txt.grande { flex: 1; min-width: 0; min-height: 48px; font-size: 15px; }
+.bus-app .bus-campo-txt.curto { width: 220px; min-height: 36px; padding: 6px 10px; font-size: 13px; }
+.bus-app .bus-campo-txt:focus-visible { outline: 2px solid var(--rumo); outline-offset: 1px; border-color: var(--rumo); }
+.bus-app .bus-campo-txt::placeholder { color: var(--tinta-3); opacity: 1; }
+
+/* Opções: chips pequenos (fontes) e controle segmentado de uma linha (frequência) */
 .bus-app .bus-opcao { position: relative; }
 .bus-app .bus-opcao input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
 .bus-app .bus-opcao label { display: inline-flex; align-items: center; min-height: 36px; padding: 6px 14px; border: 1px solid var(--traco-forte); border-radius: var(--r-pilula); background: var(--papel); color: var(--tinta); font: 400 13px/18px var(--f-texto); transition: background-color 140ms ease, border-color 140ms ease, color 140ms ease; }
 .bus-app .bus-opcao input:checked + label { border-color: var(--rumo); background: var(--rumo-suave); color: var(--rumo); font-weight: 600; }
 .bus-app .bus-opcao input:checked + label::before { content: "\2713"; margin-right: 6px; font-weight: 700; }
 .bus-app .bus-opcao input:focus-visible + label { outline: 2px solid var(--rumo); outline-offset: 2px; }
-.bus-app .bus-dica { font: 400 12px/16px var(--f-texto); color: var(--tinta-3); }
+.bus-app .bus-opcoes { display: flex; flex-wrap: wrap; gap: 8px; }
+.bus-app .bus-opcoes.mini { gap: 6px; }
+.bus-app .bus-opcoes.mini .bus-opcao label { min-height: 28px; padding: 3px 10px; font-size: 12px; line-height: 18px; }
+.bus-app .bus-opcoes.mini .bus-opcao input:checked + label::before { margin-right: 4px; }
+.bus-app .bus-seg { display: inline-flex; flex-wrap: nowrap; gap: 2px; padding: 3px; border: 1px solid var(--traco-forte); border-radius: var(--r-controle); background: var(--papel); }
+.bus-app .bus-seg .bus-opcao label { min-height: 28px; padding: 3px 12px; border: 0; border-radius: 7px; background: transparent; color: var(--tinta-2); font: 500 13px/22px var(--f-texto); white-space: nowrap; }
+.bus-app .bus-seg .bus-opcao input:checked + label { background: var(--rumo); color: var(--sobre-rumo); font-weight: 600; }
+.bus-app .bus-seg .bus-opcao input:checked + label::before { content: none; }
 .bus-app .bus-form-botoes { display: flex; flex-wrap: wrap; gap: 8px; }
-.bus-app .bus-vazio-cat { display: grid; justify-items: center; gap: 10px; padding: 40px 24px; border: 1px dashed var(--traco-forte); border-radius: var(--r-cartao); text-align: center; }
+
+/* Estado vazio */
+.bus-app .bus-vazio-cat { display: grid; justify-items: center; gap: 8px; margin: 16px 24px; padding: 20px 24px; border: 1px dashed var(--traco-forte); border-radius: var(--r-cartao); text-align: center; }
 .bus-app .bus-vazio-cat h3 { font: 620 18px/24px var(--f-disp); }
-.bus-app .bus-vazio-cat p { max-width: 46ch; color: var(--tinta-2); }
-.bus-app .bus-vazio-ic { display: inline-grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; background: var(--rumo-suave); color: var(--rumo); }
-.bus-app .bus-cat-lista { display: grid; gap: 10px; }
-.bus-app .bus-cat-item { display: grid; grid-template-columns: 28px minmax(0, 1fr) auto; gap: 12px; padding: 14px; border: 1px solid var(--traco); border-radius: var(--r-cartao); background: var(--papel); animation: bus-entra 300ms var(--e-entrar) both; }
-.bus-app .bus-cat-item.editando { border-color: var(--rumo); box-shadow: 0 0 0 1px var(--rumo); }
-.bus-app .bus-cat-n { font: 650 16px/22px var(--f-disp); color: var(--tinta-3); font-variant-numeric: tabular-nums; }
-.bus-app .bus-cat-corpo { display: grid; gap: 6px; min-width: 0; align-content: start; }
-.bus-app .bus-cat-pergunta { font: 500 15px/22px var(--f-texto); overflow-wrap: anywhere; }
-.bus-app .bus-cat-meta { font: 400 13px/18px var(--f-texto); color: var(--tinta-2); }
-.bus-app .bus-cat-lado { display: flex; flex-direction: column; align-items: flex-end; justify-content: flex-start; gap: 8px; }
-.bus-app .bus-cat-botoes { display: flex; gap: 2px; }
+.bus-app .bus-vazio-cat p { max-width: 72ch; color: var(--tinta-2); }
+.bus-app .bus-vazio-ic { display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--rumo-suave); color: var(--rumo); }
+
+/* Lista: uma rolagem só, dentro do painel; o topo fica parado */
+.bus-app .bus-cat-rolagem { flex: 1; min-height: 0; overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain; background: var(--papel); }
+.bus-app .bus-cat-lista { display: block; }
+.bus-app .bus-cat-item { display: grid; grid-template-columns: 28px minmax(0, 2.4fr) minmax(0, 1.1fr) minmax(0, 1.3fr) auto; grid-template-areas: "n p m f a"; align-items: center; column-gap: 12px; min-height: 56px; padding: 8px 24px; border-bottom: 1px solid var(--traco); }
+.bus-app .bus-cat-item.novo { animation: bus-entra 300ms var(--e-entrar) both; }
+.bus-app .bus-cat-n { grid-area: n; font: 650 15px/22px var(--f-disp); color: var(--tinta-3); font-variant-numeric: tabular-nums; }
+.bus-app .bus-cat-pergunta { grid-area: p; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; font: 500 15px/22px var(--f-texto); overflow-wrap: anywhere; }
+.bus-app .bus-cat-meta { grid-area: m; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 400 12px/16px var(--f-texto); color: var(--tinta-2); }
+.bus-app .bus-cat-fontes { grid-area: f; display: flex; flex-wrap: wrap; align-items: center; gap: 4px; min-width: 0; }
+.bus-app .bus-cat-fontes .bus-chip.leve { display: inline-block; max-width: 100%; min-height: 22px; padding: 0 8px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; line-height: 20px; }
+.bus-app .bus-cat-adefinir { font: 400 12px/16px var(--f-texto); color: var(--tinta-3); }
+.bus-app .bus-cat-botoes { grid-area: a; display: flex; gap: 2px; }
+.bus-app .bus-cat-botoes .bus-ib { width: 32px; height: 32px; color: var(--tinta-3); }
+.bus-app .bus-cat-botoes .bus-ib .bus-ic { width: 16px; height: 16px; }
+
+/* Linha em edição: o formulário ocupa o resto da linha */
+.bus-app .bus-cat-item.editando, .bus-app[data-largura] .bus-cat-item.editando { grid-template-columns: 28px minmax(0, 1fr); grid-template-areas: none; align-items: start; padding-block: 12px; background: var(--papel-2); box-shadow: inset 3px 0 0 var(--rumo); }
+.bus-app .bus-cat-item.editando .bus-cat-n { grid-area: auto; padding-top: 9px; }
+.bus-app .bus-cat-edicao { display: grid; gap: 10px; min-width: 0; }
+.bus-app .bus-cat-edicao .bus-campo-txt { min-height: 40px; }
+.bus-app .bus-cat-edicao .bus-campo-txt.curto { min-height: 36px; }
+.bus-app .bus-cat-edicao .bus-erro-campo:empty { display: none; }
 
 /* ---------- Hover: só ponteiro fino ---------- */
 @media (hover: hover) and (pointer: fine) {
@@ -1082,11 +1134,16 @@ html:not(.sem-js) [data-revela].revelado { opacity: 1; transform: none; }
   .bus-app .bus-pa-item:hover { background: var(--papel-3); }
   .bus-app .bus-pa-item[aria-selected="true"]:hover { background: var(--rumo-suave); }
   .bus-app .bus-opcao input:not(:checked) + label:hover { border-color: var(--rumo); }
+  .bus-app .bus-seg .bus-opcao input:not(:checked) + label:hover { background: var(--papel-3); color: var(--tinta); }
+  .bus-app .bus-cat-item:not(.editando):hover { background: var(--papel-2); }
+  .bus-app .bus-cat-botoes .bus-ib:not(:disabled):hover { background: var(--papel-3); color: var(--tinta); }
   .bus-app .bus-passos-cab:hover { color: var(--tinta); }
 }
 @media (pointer: coarse) {
   .bus-app .bus-ib { width: 44px; height: 44px; }
   .bus-app .bus-btn.peq, .bus-app .bus-chip, .bus-app .bus-opcao label { min-height: 44px; }
+  .bus-app .bus-opcoes.mini .bus-opcao label, .bus-app .bus-seg .bus-opcao label { min-height: 36px; }
+  .bus-app .bus-cat-fontes .bus-chip.leve { min-height: 22px; }
   .bus-app .bus-lat-item { min-height: 44px; }
 }
 
@@ -1097,8 +1154,9 @@ html:not(.sem-js) [data-revela].revelado { opacity: 1; transform: none; }
 .bus-app[data-largura="estreito"] .bus-veu-lat, .bus-app[data-largura="minimo"] .bus-veu-lat { display: block; position: absolute; inset: 0; z-index: 11; background: rgb(3 26 48 / 0.4); opacity: 0; pointer-events: none; transition: opacity 320ms var(--e-gaveta); }
 .bus-app[data-largura="estreito"][data-menu="aberto"] .bus-veu-lat, .bus-app[data-largura="minimo"][data-menu="aberto"] .bus-veu-lat { opacity: 1; pointer-events: auto; }
 .bus-app[data-largura="estreito"] .bus-btn-paleta-txt, .bus-app[data-largura="estreito"] .bus-btn-paleta kbd { display: none; }
-.bus-app[data-largura="estreito"] .bus-cat-corpo-grade { grid-template-columns: minmax(0, 1fr); }
-.bus-app[data-largura="estreito"] .bus-cat-form-wrap { position: static; }
+.bus-app[data-largura="estreito"] .bus-cat-cab, .bus-app[data-largura="minimo"] .bus-cat-cab { flex-wrap: wrap; }
+.bus-app[data-largura="estreito"] .bus-cat-topo { padding: 14px 16px 12px; }
+.bus-app[data-largura="estreito"] .bus-cat-item { grid-template-columns: 28px minmax(0, 1fr) auto; grid-template-areas: "n p a" "n m a" "n f a"; row-gap: 4px; padding: 10px 16px; }
 .bus-app[data-largura="estreito"] .bus-perfil-nome { max-width: 150px; }
 
 /* ---------- Mínimo (celular) ---------- */
@@ -1127,14 +1185,26 @@ html:not(.sem-js) [data-revela].revelado { opacity: 1; transform: none; }
 .bus-app[data-largura="minimo"] .bus-compor-leg { display: none; }
 .bus-app[data-largura="minimo"] .bus-cartao { padding: 12px; }
 .bus-app[data-largura="minimo"] .bus-kpi { flex-basis: 100%; }
-.bus-app[data-largura="minimo"] .bus-kpi:first-child .bus-kpi-num { font-size: 40px; }
 .bus-app[data-largura="minimo"] .bus-texto-p { font-size: 16px; }
-.bus-app[data-largura="minimo"] .bus-cat-cab { padding: 16px 12px 12px; }
-.bus-app[data-largura="minimo"] .bus-cat-corpo-grade { padding: 0 12px 16px; gap: 16px; }
-.bus-app[data-largura="minimo"] .bus-confirma { margin: 0 12px 12px; }
-.bus-app[data-largura="minimo"] .bus-cat-item { grid-template-columns: 22px minmax(0, 1fr); }
-.bus-app[data-largura="minimo"] .bus-cat-lado { grid-column: 1 / -1; flex-direction: row; justify-content: flex-end; align-items: center; }
-.bus-app[data-largura="minimo"] .bus-form { padding: 14px; }
+/* Celular: o painel inteiro rola (uma rolagem só) e cada linha empilha pergunta, meta e fontes, ações */
+.bus-app[data-largura="minimo"] .bus-catalogo { overflow-y: auto; overscroll-behavior: contain; }
+.bus-app[data-largura="minimo"] .bus-cat-rolagem { flex: none; overflow: visible; }
+.bus-app[data-largura="minimo"] .bus-cat-topo { padding: 12px; }
+.bus-app[data-largura="minimo"] .bus-cat-prog { flex: 1 1 100%; order: 2; }
+.bus-app[data-largura="minimo"] .bus-cat-acoes { order: 3; flex: 1 1 100%; }
+.bus-app[data-largura="minimo"] .bus-cad { padding: 10px; }
+.bus-app[data-largura="minimo"] .bus-cad-linha { flex-direction: column; gap: 8px; }
+.bus-app[data-largura="minimo"] .bus-cad-add { width: 100%; }
+.bus-app[data-largura="minimo"] .bus-cad-grupo { flex-wrap: wrap; width: 100%; gap: 4px 10px; }
+.bus-app[data-largura="minimo"] .bus-cad-fontes .bus-cad-rot { padding-top: 0; }
+.bus-app[data-largura="minimo"] .bus-campo-txt.curto { width: 100%; }
+.bus-app[data-largura="minimo"] .bus-seg { display: flex; width: 100%; }
+.bus-app[data-largura="minimo"] .bus-seg .bus-opcao { flex: 1 1 auto; }
+.bus-app[data-largura="minimo"] .bus-seg .bus-opcao label { width: 100%; justify-content: center; padding: 3px 4px; font-size: 12px; }
+.bus-app[data-largura="minimo"] .bus-vazio-cat { margin: 16px 12px; padding: 28px 16px; }
+.bus-app[data-largura="minimo"] .bus-cat-item { grid-template-columns: 24px minmax(0, 1fr); grid-template-areas: "n p" "n m" "n f" "n a"; row-gap: 4px; padding: 12px; }
+.bus-app[data-largura="minimo"] .bus-cat-botoes { margin-left: -6px; }
+.bus-app[data-largura="minimo"] .bus-cat-botoes .bus-ib { width: 40px; height: 40px; }
 .bus-app[data-largura="minimo"] .bus-demo { top: 68px; flex-direction: column; align-items: stretch; gap: 8px; padding: 10px 12px; }
 .bus-app[data-largura="minimo"] .bus-demo-botoes { justify-content: space-between; }
 .bus-app[data-largura="minimo"] .bus-demo-botoes .bus-btn { flex: 1; padding: 0 6px; }
@@ -1153,7 +1223,7 @@ html:not(.sem-js) [data-revela].revelado { opacity: 1; transform: none; }
   .bus-app .bus-avatar.gira .bus-av-svg { animation: none; }
   .bus-app .bus-giro { animation: none; border-top-color: var(--traco-forte); background: var(--rumo); border-width: 0; width: 8px; height: 8px; }
   .bus-app .bus-esqueleto i { animation: none; }
-  .bus-app .bus-entra, .bus-app .bus-passo, .bus-app .bus-msg.usuario, .bus-app .bus-cat-item, .bus-app .bus-toast, .bus-app .bus-demo { animation-name: bus-fade; animation-duration: 300ms; animation-delay: 0s; }
+  .bus-app .bus-entra, .bus-app .bus-passo, .bus-app .bus-msg.usuario, .bus-app .bus-cat-item.novo, .bus-app .bus-toast, .bus-app .bus-demo { animation-name: bus-fade; animation-duration: 300ms; animation-delay: 0s; }
   .bus-app .bus-grafico .bus-barra, .bus-app .bus-grafico .bus-coluna { transform: none; opacity: 0; }
   .bus-app .bus-grafico.on .bus-barra, .bus-app .bus-grafico.on .bus-coluna { opacity: 1; transition: opacity 300ms ease; }
   .bus-app .bus-grafico[data-estatico] .bus-barra, .bus-app .bus-grafico[data-estatico] .bus-coluna { opacity: 1; transition: none; }
@@ -3008,8 +3078,15 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
     b.addEventListener("click", function () { abrirOrigem(origem, b); });
     return b;
   }
+  // Separa "136,4 mil t", "85,3%" ou "1 h 20 min" em pedaços: os numéricos ficam no tamanho do KPI e as unidades menores.
+  function partesDoValor(texto) {
+    return (String(texto).match(/\d{1,2}:\d{2}|[−+-]?\d[\d.,]*|[^\d−+-]+|[−+-]/g) || [String(texto)]).map(function (p) {
+      return /\d/.test(p) ? h("span", { "class": "bus-kpi-v" }, p) : h("span", { "class": "bus-kpi-un" }, p.trim());
+    });
+  }
   function kpi(rotulo, valorTxt, sub, origem, opcoes) {
-    var num = origem ? numBtn(valorTxt, origem) : h("span", null, valorTxt);
+    var num = origem ? numBtn(valorTxt, origem) : h("span", null);
+    num.replaceChildren.apply(num, partesDoValor(valorTxt));
     num.classList.add("bus-kpi-num");
     if (opcoes && opcoes.final != null) { num.__conta = { final: opcoes.final, fmt: opcoes.fmt, texto: valorTxt }; }
     return h("div", { "class": "bus-kpi" + (opcoes && opcoes.alerta ? " alerta" : "") },
@@ -3283,7 +3360,8 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
     raiz.setAttribute("data-gaveta", "aberta");
     atualizarInert();
     var alvo = estado.el.gaveta.fechar;
-    setTimeout(function () { alvo.focus(); }, 30);
+    // preventScroll: a gaveta ainda está fora da tela nos primeiros ms da animação, e o foco comum rolaria a janela até ela.
+    setTimeout(function () { alvo.focus({ preventScroll: true }); }, 30);
   }
   function fecharGaveta() {
     if (estado.raiz.getAttribute("data-gaveta") !== "aberta") return;
@@ -3416,7 +3494,8 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
         (function passo(agora) {
           var p = Math.min(1, (agora - t0) / duracao);
           var e = 1 - Math.pow(1 - p, 3);
-          n.textContent = p >= 1 ? c.texto : c.fmt(c.final * e);
+          // só o pedaço numérico muda; a unidade continua no lugar
+          n.replaceChildren.apply(n, partesDoValor(p >= 1 ? c.texto : c.fmt(c.final * e)));
           if (p < 1) requestAnimationFrame(passo); else { n.removeAttribute("data-contando"); resolve(); }
         })(t0);
       });
@@ -3620,6 +3699,11 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
   // =========================================================================
   var FREQS = ["Diária", "Semanal", "Mensal", "Sob demanda"];
   var FONTES_CAT = ["Faturamento no SAP", "Contratos", "Planilhas e e-mails dos vales", "Cadastro e DNA do cliente", "Dado que só o cliente tem", "Capacidade e operação"];
+  var META_CATALOGO = 10;
+  // Chaves com sufixo -2: a versão anterior gravava as perguntas de exemplo no navegador (file:// compartilha o armazenamento
+  // entre todas as cópias do arquivo), e o catálogo precisa abrir vazio. Os dados antigos ficam sob a chave antiga, sem uso.
+  var CHAVE_CATALOGO = "bus-catalogo-2";
+  var CHAVE_RASCUNHO = "bus-rascunho-2";
 
   function lerArmazenado(chave, padrao) {
     try { var v = localStorage.getItem(chave); return v ? JSON.parse(v) : padrao; } catch (e) { return padrao; }
@@ -3627,94 +3711,120 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
   function gravarArmazenado(chave, valor) { try { localStorage.setItem(chave, JSON.stringify(valor)); } catch (e) { /* armazenamento indisponível */ } }
   function novoId() { return "q" + Date.now().toString(36) + Math.floor(Math.random() * 1e6).toString(36); }
 
-  function formVazio() { return { pergunta: "", quem: estado ? estado.perfil.nome : "", freq: "Sob demanda", fontes: [] }; }
+  // As opções (quem, frequência, fontes) valem para a próxima pergunta e ficam como estão depois de cada Enter.
+  function formVazio() { return { pergunta: "", quem: "", freq: "Sob demanda", fontes: [] }; }
 
-  function salvarCatalogo() { gravarArmazenado("bus-catalogo", estado.cat.itens); }
-  function salvarRascunho() { gravarArmazenado("bus-rascunho", estado.cat.form); }
+  function salvarCatalogo() { gravarArmazenado(CHAVE_CATALOGO, estado.cat.itens); }
+  function salvarRascunho() { gravarArmazenado(CHAVE_RASCUNHO, estado.cat.form); }
 
+  // Chega da resposta "fora do catálogo": põe o texto na barra de cadastro, e quem confirma é o Enter.
   function adicionarAoCatalogo(texto) {
     mostrarAba("catalogo");
-    estado.cat.edicao = null;
-    estado.cat.form = formVazio();
+    estado.cat.edicao = null; estado.cat.edit = null;
     estado.cat.form.pergunta = texto;
     salvarRascunho();
     renderFormulario();
     renderCatalogo();
-    estado.el.cat.quem.focus();
-    estado.el.cat.quem.select();
+    estado.el.cat.pergunta.focus();
+    estado.el.cat.pergunta.select();
   }
 
+  // ---- barra de cadastro rápido
   function renderFormulario() {
     var f = estado.cat.form, c = estado.el.cat;
     c.pergunta.value = f.pergunta;
     c.quem.value = f.quem;
     c.formEl.querySelectorAll("[name=freq]").forEach(function (r) { r.checked = r.value === f.freq; });
     c.formEl.querySelectorAll("[name=fonte]").forEach(function (r) { r.checked = f.fontes.indexOf(r.value) >= 0; });
-    var editando = !!estado.cat.edicao;
-    c.enviar.firstChild.nextSibling.textContent = editando ? "Salvar alterações" : "Adicionar à lista";
-    c.cancelar.hidden = !editando;
-    c.titulo.textContent = editando ? "Editar pergunta" : "Nova pergunta";
     c.erro.textContent = "";
   }
 
-  function lerFormulario() {
-    var c = estado.el.cat, f = estado.cat.form;
-    f.pergunta = c.pergunta.value; f.quem = c.quem.value;
-    var freq = c.formEl.querySelector("[name=freq]:checked"); f.freq = freq ? freq.value : "Sob demanda";
-    f.fontes = [].slice.call(c.formEl.querySelectorAll("[name=fonte]:checked")).map(function (x) { return x.value; });
-    return f;
+  function lerCampos(raiz) {
+    var freq = raiz.querySelector("[name=freq]:checked");
+    return {
+      pergunta: raiz.querySelector("[data-campo=pergunta]").value, quem: raiz.querySelector("[data-campo=quem]").value,
+      freq: freq ? freq.value : "Sob demanda",
+      fontes: [].slice.call(raiz.querySelectorAll("[name=fonte]:checked")).map(function (x) { return x.value; })
+    };
+  }
+  function lerFormulario() { estado.cat.form = lerCampos(estado.el.cat.formEl); return estado.cat.form; }
+
+  // Devolve a pergunta limpa, ou escreve o motivo em `erroEl` e devolve "".
+  function validarPergunta(bruto, idIgnorado, erroEl) {
+    var texto = bruto.replace(/\s+/g, " ").trim();
+    if (!texto) { erroEl.textContent = "Escreva a pergunta antes de adicionar."; return ""; }
+    var igual = estado.cat.itens.filter(function (i) { return norm(i.pergunta) === norm(texto) && i.id !== idIgnorado; })[0];
+    if (igual) { erroEl.textContent = "Esta pergunta já está no catálogo."; return ""; }
+    return texto;
   }
 
   function enviarFormulario() {
     var f = lerFormulario(), c = estado.el.cat;
-    var texto = f.pergunta.replace(/\s+/g, " ").trim();
-    if (!texto) { c.erro.textContent = "Escreva a pergunta antes de adicionar."; c.pergunta.focus(); return; }
-    var igual = estado.cat.itens.filter(function (i) { return norm(i.pergunta) === norm(texto) && i.id !== estado.cat.edicao; })[0];
-    if (igual) { c.erro.textContent = "Esta pergunta já está no catálogo."; c.pergunta.focus(); return; }
-    var item = { id: estado.cat.edicao || novoId(), pergunta: texto, quem: f.quem.trim(), freq: f.freq, fontes: f.fontes.slice() };
-    if (estado.cat.edicao) {
-      estado.cat.itens = estado.cat.itens.map(function (i) { return i.id === estado.cat.edicao ? item : i; });
-      avisar("Pergunta atualizada");
-    } else {
-      estado.cat.itens.push(item);
-      avisar("Pergunta adicionada: " + estado.cat.itens.length + " no catálogo");
-    }
-    estado.cat.edicao = null;
-    var quem = f.quem;
-    estado.cat.form = formVazio(); estado.cat.form.quem = quem;
+    var texto = validarPergunta(f.pergunta, null, c.erro);
+    if (!texto) { c.pergunta.focus(); return; }
+    var item = { id: novoId(), pergunta: texto, quem: f.quem.trim(), freq: f.freq, fontes: f.fontes.slice() };
+    estado.cat.itens.push(item);
+    estado.cat.novoId = item.id;
+    estado.cat.form.pergunta = "";
     salvarCatalogo(); salvarRascunho();
     renderFormulario(); renderCatalogo();
+    c.rolagem.scrollTop = c.rolagem.scrollHeight;
     c.pergunta.focus();
+    anunciar("Pergunta " + estado.cat.itens.length + " adicionada");
   }
 
+  // ---- ações da lista
   function mover(id, delta) {
     var itens = estado.cat.itens, i = itens.findIndex(function (x) { return x.id === id; }), j = i + delta;
     if (i < 0 || j < 0 || j >= itens.length) return;
     var t = itens[i]; itens[i] = itens[j]; itens[j] = t;
     salvarCatalogo(); renderCatalogo();
-    var btn = estado.el.cat.lista.querySelector('[data-id="' + id + '"][data-acao="' + (delta < 0 ? "subir" : "descer") + '"]');
+    var botoes = estado.el.cat.lista;
+    var btn = botoes.querySelector('[data-id="' + id + '"][data-acao="' + (delta < 0 ? "subir" : "descer") + '"]');
     if (btn && !btn.disabled) btn.focus();
-    else { var outro = estado.el.cat.lista.querySelector('[data-id="' + id + '"][data-acao="' + (delta < 0 ? "descer" : "subir") + '"]'); if (outro) outro.focus(); }
+    else { var outro = botoes.querySelector('[data-id="' + id + '"][data-acao="' + (delta < 0 ? "descer" : "subir") + '"]'); if (outro) outro.focus(); }
     anunciar("Pergunta movida para a posição " + (j + 1));
   }
   function remover(id) {
     var i = estado.cat.itens.findIndex(function (x) { return x.id === id; });
     if (i < 0) return;
     var item = estado.cat.itens.splice(i, 1)[0];
-    if (estado.cat.edicao === id) { estado.cat.edicao = null; estado.cat.form = formVazio(); renderFormulario(); }
+    if (estado.cat.edicao === id) { estado.cat.edicao = null; estado.cat.edit = null; }
     salvarCatalogo(); renderCatalogo();
     avisar("Pergunta removida", { rotulo: "Desfazer", fn: function () { estado.cat.itens.splice(Math.min(i, estado.cat.itens.length), 0, item); salvarCatalogo(); renderCatalogo(); } });
   }
+  function focarAcao(id, acao) {
+    var b = estado.el.cat.lista.querySelector('[data-id="' + id + '"][data-acao="' + acao + '"]');
+    if (b) b.focus();
+  }
+  // Editar acontece na própria linha; o rascunho da edição fica em estado.cat.edit.
   function editar(id) {
     var item = estado.cat.itens.filter(function (x) { return x.id === id; })[0];
     if (!item) return;
     estado.cat.edicao = id;
-    estado.cat.form = { pergunta: item.pergunta, quem: item.quem, freq: item.freq, fontes: item.fontes.slice() };
-    renderFormulario();
-    estado.el.cat.pergunta.focus();
+    estado.cat.edit = { pergunta: item.pergunta, quem: item.quem, freq: item.freq, fontes: item.fontes.slice() };
+    renderCatalogo();
+    var campo = estado.el.cat.lista.querySelector("[data-campo=pergunta]");
+    if (campo) { campo.focus(); campo.select(); }
+  }
+  function cancelarEdicao() {
+    var id = estado.cat.edicao;
+    estado.cat.edicao = null; estado.cat.edit = null;
+    renderCatalogo();
+    if (id) focarAcao(id, "editar");
+  }
+  function salvarEdicao(form) {
+    var id = estado.cat.edicao, erroEl = form.querySelector(".bus-erro-campo");
+    var campos = lerCampos(form);
+    var texto = validarPergunta(campos.pergunta, id, erroEl);
+    if (!texto) { form.querySelector("[data-campo=pergunta]").focus(); return; }
+    estado.cat.itens = estado.cat.itens.map(function (i) { return i.id === id ? { id: id, pergunta: texto, quem: campos.quem.trim(), freq: campos.freq, fontes: campos.fontes } : i; });
+    estado.cat.edicao = null; estado.cat.edit = null;
+    salvarCatalogo(); renderCatalogo();
+    focarAcao(id, "editar");
+    avisar("Pergunta atualizada");
   }
 
-  function nomeFreq(f) { return f; }
   function csvCatalogo() {
     return { colunas: ["Nº", "Pergunta", "Quem pergunta", "Frequência", "Fontes necessárias"],
       linhas: estado.cat.itens.map(function (i, n) { return [String(n + 1), i.pergunta, i.quem, i.freq, i.fontes.join(", ")]; }) };
@@ -3728,10 +3838,66 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
     return linhas.join("\n");
   }
 
+  // ---- peças de tela
+  // Chips (checkbox) ou controle segmentado (radio); `prefixo` mantém os ids únicos entre a barra e a linha em edição.
+  function grupoOpcoes(prefixo, nome, valores, tipo, classe, rotulo) {
+    return h("div", { "class": classe, role: tipo === "radio" ? "radiogroup" : "group", "aria-label": rotulo },
+      valores.map(function (v, i) {
+        var id = prefixo + nome + "-" + i;
+        return h("span", { "class": "bus-opcao" }, h("input", { type: tipo, name: nome, id: id, value: v }), h("label", { "for": id }, v));
+      }));
+  }
+  function icBtn(icone, rotulo, id, acao, desabilitado, fn) {
+    return h("button", { type: "button", "class": "bus-ib", "aria-label": rotulo, title: rotulo, "data-id": id, "data-acao": acao, disabled: desabilitado, onclick: fn }, ic(icone, 16));
+  }
+  // Na lista os chips usam o nome curto, para a linha não passar de duas linhas; o nome inteiro fica no title.
+  var FONTE_CURTA = { "Faturamento no SAP": "SAP", "Planilhas e e-mails dos vales": "Vales", "Cadastro e DNA do cliente": "DNA do cliente", "Dado que só o cliente tem": "Só o cliente", "Capacidade e operação": "Capacidade" };
+  function metaDaLinha(item) { return (item.quem || "Quem pergunta não informado") + " · " + item.freq; }
+
+  function linhaLeitura(item, i, n) {
+    var fontes = item.fontes.length
+      ? item.fontes.map(function (f) { return h("span", { "class": "bus-chip leve", title: f }, FONTE_CURTA[f] || f); })
+      : [h("span", { "class": "bus-cat-adefinir" }, "a definir")];
+    return h("li", { "class": "bus-cat-item" + (estado.cat.novoId === item.id ? " novo" : ""), "data-id": item.id },
+      h("span", { "class": "bus-cat-n" }, String(i + 1)),
+      h("p", { "class": "bus-cat-pergunta", title: item.pergunta }, item.pergunta),
+      h("p", { "class": "bus-cat-meta", title: metaDaLinha(item) }, metaDaLinha(item)),
+      h("div", { "class": "bus-cat-fontes", title: item.fontes.length ? item.fontes.join(", ") : "Fontes a definir" }, fontes),
+      h("div", { "class": "bus-cat-botoes" },
+        icBtn("chevronUp", "Subir a pergunta " + (i + 1), item.id, "subir", i === 0, function () { mover(item.id, -1); }),
+        icBtn("chevronDown", "Descer a pergunta " + (i + 1), item.id, "descer", i === n - 1, function () { mover(item.id, 1); }),
+        icBtn("pencil", "Editar a pergunta " + (i + 1), item.id, "editar", false, function () { editar(item.id); }),
+        icBtn("trash", "Remover a pergunta " + (i + 1), item.id, "remover", false, function () { remover(item.id); })));
+  }
+
+  function linhaEdicao(item, i) {
+    var d = estado.cat.edit, erro = h("p", { "class": "bus-erro-campo", role: "alert" });
+    var pergunta = h("input", { type: "text", "class": "bus-campo-txt", "data-campo": "pergunta", "aria-label": "Pergunta " + (i + 1), autocomplete: "off" });
+    var quem = h("input", { type: "text", "class": "bus-campo-txt curto", "data-campo": "quem", "aria-label": "Quem pergunta", placeholder: "Quem pergunta", autocomplete: "off" });
+    pergunta.value = d.pergunta; quem.value = d.quem;
+    var prefixo = "bus-e-";
+    var freq = grupoOpcoes(prefixo, "freq", FREQS, "radio", "bus-seg", "Frequência");
+    var fontes = grupoOpcoes(prefixo, "fonte", FONTES_CAT, "checkbox", "bus-opcoes mini", "Fontes necessárias");
+    freq.querySelectorAll("input").forEach(function (r) { r.checked = r.value === d.freq; });
+    fontes.querySelectorAll("input").forEach(function (r) { r.checked = d.fontes.indexOf(r.value) >= 0; });
+    var form = h("form", { "class": "bus-cat-edicao", novalidate: true, "aria-label": "Editar a pergunta " + (i + 1) },
+      pergunta,
+      h("div", { "class": "bus-cad-opcoes" }, quem, freq),
+      fontes,
+      erro,
+      h("div", { "class": "bus-form-botoes" },
+        h("button", { type: "submit", "class": "bus-btn primario peq" }, ic("check", 15), h("span", null, "Salvar alterações")),
+        h("button", { type: "button", "class": "bus-btn secundario peq", onclick: cancelarEdicao }, "Cancelar")));
+    form.addEventListener("submit", function (e) { e.preventDefault(); salvarEdicao(form); });
+    form.addEventListener("input", function () { estado.cat.edit = lerCampos(form); erro.textContent = ""; });
+    form.addEventListener("keydown", function (e) { if (e.key === "Escape") { e.preventDefault(); e.stopPropagation(); cancelarEdicao(); } });
+    return h("li", { "class": "bus-cat-item editando", "data-id": item.id }, h("span", { "class": "bus-cat-n" }, String(i + 1)), form);
+  }
+
   function renderCatalogo() {
     var c = estado.el.cat, itens = estado.cat.itens, n = itens.length;
-    c.contador.textContent = n <= 10 ? n + " de 10 perguntas" : n + " perguntas, acima da meta de 10";
-    c.progresso.style.setProperty("--p", Math.min(1, n / 10));
+    c.contador.textContent = n <= META_CATALOGO ? n + " de " + META_CATALOGO + " perguntas" : n + " perguntas, acima da meta de " + META_CATALOGO;
+    c.progresso.style.setProperty("--p", Math.min(1, n / META_CATALOGO));
     c.abaBadge.textContent = String(n);
     c.abaBadge.hidden = n === 0;
     var vazio = n === 0;
@@ -3740,57 +3906,33 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
     if (estado.cat.confirmando) c.confirmaTxt.textContent = "Limpar as " + n + (n === 1 ? " pergunta" : " perguntas") + " do catálogo? Esta ação não pode ser desfeita.";
     c.lista.replaceChildren();
     c.vazio.hidden = !vazio;
-    c.listaWrap.hidden = vazio;
+    c.lista.hidden = vazio;
     itens.forEach(function (item, i) {
-      var fontes = item.fontes.length ? item.fontes.map(function (f) { return h("span", { "class": "bus-chip leve" }, f); }) : [h("span", { "class": "bus-suave" }, "Fontes a definir")];
-      c.lista.appendChild(h("li", { "class": "bus-cat-item" + (estado.cat.edicao === item.id ? " editando" : ""), "data-id": item.id },
-        h("span", { "class": "bus-cat-n" }, String(i + 1)),
-        h("div", { "class": "bus-cat-corpo" },
-          h("p", { "class": "bus-cat-pergunta" }, item.pergunta),
-          h("p", { "class": "bus-cat-meta" }, (item.quem || "Quem pergunta não informado") + " | " + nomeFreq(item.freq)),
-          h("div", { "class": "bus-chips" }, fontes)),
-        h("div", { "class": "bus-cat-lado" },
-          h("div", { "class": "bus-cat-botoes" },
-            icBtn("chevronUp", "Subir a pergunta " + (i + 1), item.id, "subir", i === 0, function () { mover(item.id, -1); }),
-            icBtn("chevronDown", "Descer a pergunta " + (i + 1), item.id, "descer", i === n - 1, function () { mover(item.id, 1); }),
-            icBtn("pencil", "Editar a pergunta " + (i + 1), item.id, "editar", false, function () { editar(item.id); }),
-            icBtn("trash", "Remover a pergunta " + (i + 1), item.id, "remover", false, function () { remover(item.id); })))));
+      c.lista.appendChild(estado.cat.edicao === item.id && estado.cat.edit ? linhaEdicao(item, i) : linhaLeitura(item, i, n));
     });
-  }
-  function icBtn(icone, rotulo, id, acao, desabilitado, fn) {
-    return h("button", { type: "button", "class": "bus-ib", "aria-label": rotulo, title: rotulo, "data-id": id, "data-acao": acao, disabled: desabilitado, onclick: fn }, ic(icone, 16));
+    estado.cat.novoId = null;
   }
 
   function construirCatalogo() {
     var c = estado.el.cat = {};
-    c.titulo = h("h2", { "class": "bus-form-titulo" }, "Nova pergunta");
-    c.pergunta = h("textarea", { id: "bus-f-pergunta", rows: "2", "class": "bus-campo-txt", placeholder: "Escreva a pergunta como a gerência a faz", autocomplete: "off" });
-    c.quem = h("input", { id: "bus-f-quem", type: "text", "class": "bus-campo-txt", placeholder: "Cargo de quem pergunta", autocomplete: "off" });
-    c.erro = h("p", { "class": "bus-erro-campo", role: "alert" });
-    c.enviar = h("button", { type: "submit", "class": "bus-btn primario" }, ic("plus", 16), h("span", null, "Adicionar à lista"));
-    c.cancelar = h("button", { type: "button", "class": "bus-btn secundario", hidden: true, onclick: function () { estado.cat.edicao = null; estado.cat.form = formVazio(); renderFormulario(); renderCatalogo(); } }, "Cancelar edição");
-    var radios = function (nome, valores, tipo, rotuloDe) {
-      return h("div", { "class": "bus-opcoes", role: tipo === "radio" ? "radiogroup" : "group" }, valores.map(function (v, i) {
-        var id = "bus-" + nome + "-" + i;
-        return h("span", { "class": "bus-opcao" }, h("input", { type: tipo, name: nome, id: id, value: v }), h("label", { "for": id }, rotuloDe ? rotuloDe(v) : v));
-      }));
-    };
-    c.formEl = h("form", { "class": "bus-form", novalidate: true },
-      c.titulo,
-      h("div", { "class": "bus-campo" }, h("label", { "for": "bus-f-pergunta" }, "Pergunta"), c.pergunta),
-      h("div", { "class": "bus-campo" }, h("label", { "for": "bus-f-quem" }, "Quem pergunta"), c.quem),
-      h("fieldset", { "class": "bus-campo" }, h("legend", null, "Frequência"), radios("freq", FREQS, "radio")),
-      h("fieldset", { "class": "bus-campo" }, h("legend", null, "Fontes necessárias"), radios("fonte", FONTES_CAT, "checkbox")),
-      c.erro, h("div", { "class": "bus-form-botoes" }, c.enviar, c.cancelar));
+    var prefixo = "bus-";
+    c.pergunta = h("input", { id: "bus-f-pergunta", type: "text", "class": "bus-campo-txt grande", "data-campo": "pergunta", placeholder: "Digite a pergunta como a diretoria a faz e tecle Enter", autocomplete: "off" });
+    c.quem = h("input", { id: "bus-f-quem", type: "text", "class": "bus-campo-txt curto", "data-campo": "quem", placeholder: "Cargo, ex.: Diretor comercial", autocomplete: "off" });
+    c.erro = h("p", { "class": "bus-erro-campo bus-cad-erro", role: "alert" });
+    var freq = grupoOpcoes(prefixo, "freq", FREQS, "radio", "bus-seg", "Frequência");
+    var fontes = grupoOpcoes(prefixo, "fonte", FONTES_CAT, "checkbox", "bus-opcoes mini", "Fontes necessárias");
+    c.formEl = h("form", { "class": "bus-cad", novalidate: true, "aria-label": "Cadastro rápido de pergunta" },
+      h("div", { "class": "bus-cad-linha" },
+        h("label", { "for": "bus-f-pergunta", "class": "bus-sr" }, "Pergunta"),
+        c.pergunta,
+        h("button", { type: "submit", "class": "bus-btn primario bus-cad-add" }, ic("plus", 16), h("span", null, "Adicionar"))),
+      h("div", { "class": "bus-cad-opcoes" },
+        h("div", { "class": "bus-cad-grupo" }, h("label", { "for": "bus-f-quem", "class": "bus-cad-rot" }, "Quem pergunta"), c.quem),
+        h("div", { "class": "bus-cad-grupo" }, h("span", { "class": "bus-cad-rot" }, "Frequência"), freq)),
+      h("div", { "class": "bus-cad-grupo bus-cad-fontes" }, h("span", { "class": "bus-cad-rot" }, "Fontes"), fontes),
+      c.erro);
     c.formEl.addEventListener("submit", function (e) { e.preventDefault(); enviarFormulario(); });
-    c.pergunta.addEventListener("keydown", function (e) {
-      if (e.key === "Enter" && !e.shiftKey && !e.isComposing) { e.preventDefault(); enviarFormulario(); }
-    });
-    c.formEl.addEventListener("input", function (e) {
-      lerFormulario();
-      c.erro.textContent = "";
-      salvarRascunho();
-    });
+    c.formEl.addEventListener("input", function () { lerFormulario(); c.erro.textContent = ""; salvarRascunho(); });
 
     c.contador = h("span", { "class": "bus-cat-contador", "aria-live": "polite" });
     c.progresso = h("span", { "class": "bus-prog" }, h("i"));
@@ -3799,7 +3941,7 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
       c.confirmaTxt,
       h("div", { "class": "bus-confirma-botoes" },
         h("button", { type: "button", "class": "bus-btn secundario peq", "data-acao": "cancelar-limpar", onclick: function () { estado.cat.confirmando = false; renderCatalogo(); c.btnLimpar.focus(); } }, "Cancelar"),
-        h("button", { type: "button", "class": "bus-btn perigo peq", "data-acao": "confirmar-limpar", onclick: function () { estado.cat.itens = []; estado.cat.confirmando = false; salvarCatalogo(); renderCatalogo(); avisar("Catálogo limpo"); c.pergunta.focus(); } }, "Limpar catálogo")));
+        h("button", { type: "button", "class": "bus-btn perigo peq", "data-acao": "confirmar-limpar", onclick: function () { estado.cat.itens = []; estado.cat.edicao = null; estado.cat.edit = null; estado.cat.confirmando = false; salvarCatalogo(); renderCatalogo(); avisar("Catálogo limpo"); c.pergunta.focus(); } }, "Limpar catálogo")));
     c.btnLimpar = h("button", { type: "button", "class": "bus-btn texto peq", "data-requer": "1", "data-acao": "limpar", onclick: function () {
       estado.cat.confirmando = true; renderCatalogo(); c.confirma.querySelector("[data-acao=cancelar-limpar]").focus();
     } }, ic("trash", 15), "Limpar catálogo");
@@ -3807,25 +3949,26 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
       h("button", { type: "button", "class": "bus-btn secundario peq", "data-requer": "1", "data-acao": "csv", onclick: function () { var d = csvCatalogo(); baixarCSV("catalogo-bussola", d.colunas, d.linhas); } }, ic("download", 15), "Exportar CSV"),
       h("button", { type: "button", "class": "bus-btn secundario peq", "data-requer": "1", "data-acao": "ata", onclick: function () { copiarTexto(textoAta(), "Catálogo copiado para a ata"); } }, ic("clipboard", 15), "Copiar para a ata"),
       c.btnLimpar);
-    c.lista = h("ol", { "class": "bus-cat-lista" });
-    c.listaWrap = h("div", { "class": "bus-cat-lista-wrap" }, c.lista);
+    c.lista = h("ol", { "class": "bus-cat-lista", "aria-label": "Perguntas do catálogo" });
     c.vazio = h("div", { "class": "bus-vazio-cat" },
       h("span", { "class": "bus-vazio-ic" }, ic("clipboard", 26)),
       h("h3", null, "O catálogo está vazio"),
-      h("p", null, "Digite a primeira pergunta que a Rumo quer fazer à Bússola, informe quem pergunta e marque as fontes. A lista fica salva neste navegador."),
-      h("button", { type: "button", "class": "bus-btn tonal", onclick: function () {
-        QS.forEach(function (q) { estado.cat.itens.push({ id: novoId(), pergunta: exemplo(q.id, estado.perfil), quem: PERFIS[0].nome, freq: "Sob demanda", fontes: [] }); });
-        salvarCatalogo(); renderCatalogo(); avisar("Perguntas do protótipo adicionadas");
-      } }, "Partir das perguntas do protótipo"));
+      h("p", null, "Digite a primeira pergunta no campo acima e tecle Enter. Quem pergunta, frequência e fontes valem para as próximas perguntas até você trocá-los, e a lista fica salva neste navegador."),
+      h("button", { type: "button", "class": "bus-btn tonal", "data-acao": "exemplos", onclick: function () {
+        QS.forEach(function (q) { estado.cat.itens.push({ id: novoId(), pergunta: exemplo(q.id, estado.perfil), quem: "Gerência comercial", freq: "Sob demanda", fontes: [] }); });
+        salvarCatalogo(); renderCatalogo(); avisar("Perguntas de exemplo carregadas");
+      } }, "Carregar perguntas de exemplo"));
+    c.rolagem = h("div", { "class": "bus-cat-rolagem" }, c.vazio, c.lista);
 
     c.raiz = h("section", { "class": "bus-painel bus-catalogo", "data-painel": "catalogo", hidden: true, "aria-label": "Catálogo ao vivo" },
-      h("div", { "class": "bus-cat-cab" },
-        h("div", null, h("h2", { "class": "bus-cat-titulo" }, "Catálogo ao vivo"), c.contador, c.progresso),
-        c.acoes),
-      c.confirma,
-      h("div", { "class": "bus-cat-corpo-grade" },
-        h("div", { "class": "bus-cat-form-wrap" }, c.formEl),
-        h("div", { "class": "bus-cat-lista-col" }, c.vazio, c.listaWrap)));
+      h("div", { "class": "bus-cat-topo" },
+        h("div", { "class": "bus-cat-cab" },
+          h("h2", { "class": "bus-cat-titulo" }, "Catálogo ao vivo"),
+          h("div", { "class": "bus-cat-prog" }, c.contador, c.progresso),
+          c.acoes),
+        c.confirma,
+        c.formEl),
+      c.rolagem);
     return c.raiz;
   }
 
@@ -4140,14 +4283,17 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
       }
     } catch (e) { caminhosAvatar = null; }
 
-    var catalogo = lerArmazenado("bus-catalogo", []);
+    var catalogo = lerArmazenado(CHAVE_CATALOGO, []);
     if (!Array.isArray(catalogo)) catalogo = [];
+    catalogo = catalogo.filter(function (i) { return i && typeof i.pergunta === "string"; }).map(function (i) {
+      return { id: i.id || novoId(), pergunta: i.pergunta, quem: i.quem || "", freq: FREQS.indexOf(i.freq) >= 0 ? i.freq : "Sob demanda", fontes: Array.isArray(i.fontes) ? i.fontes : [] };
+    });
     estado = {
       perfil: PERFIS[0], fila: Promise.resolve(), pendentes: 0, colado: true, aba: "conversa", pular: false, caminhosAvatar: caminhosAvatar,
-      cat: { itens: catalogo, edicao: null, confirmando: false, form: null },
+      cat: { itens: catalogo, edicao: null, edit: null, novoId: null, confirmando: false, form: null },
       demo: { rodando: false, pausado: false, pular: false, token: 0 }, el: {}, ultimaResposta: null
     };
-    estado.cat.form = Object.assign(formVazio(), lerArmazenado("bus-rascunho", {}) || {});
+    estado.cat.form = Object.assign(formVazio(), lerArmazenado(CHAVE_RASCUNHO, {}) || {});
     if (!Array.isArray(estado.cat.form.fontes)) estado.cat.form.fontes = [];
     var el = estado.el;
 
@@ -4458,7 +4604,7 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
       const capa = $("#capa");
       new IntersectionObserver((entradas) => {
         cabecalho.classList.toggle("sobre-capa", entradas[0].isIntersecting);
-      }, { rootMargin: "-64px 0px 0px 0px" }).observe(capa);
+      }, { rootMargin: "-96px 0px 0px 0px" }).observe(capa); /* a rolagem para a 72 px do topo: a faixa da capa atrás do cabeçalho não conta */
 
       // Marca no menu a seção que ocupa o meio da tela
       const links = $$('.nav a, .menu-painel nav a');
