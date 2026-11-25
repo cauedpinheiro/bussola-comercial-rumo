@@ -119,9 +119,8 @@ a { color: inherit; }
   font: 600 12px/16px var(--f-texto); white-space: nowrap;
 }
 .selo .ico { width: 14px; height: 14px; stroke-width: 2; }
-.selo-piloto { background: var(--ceu-suave); color: var(--rumo); }
-[data-tema="escuro"] .selo-piloto { color: var(--ceu-texto); }
-.selo-onda, .selo-proposta { border: 1px dashed var(--traco-forte); color: var(--tinta-2); background: transparent; }
+.selo-motor { border: 1px solid var(--traco-forte); color: var(--tinta-2); background: transparent; }
+.selo-proposta { border: 1px dashed var(--traco-forte); color: var(--tinta-2); background: transparent; }
 .selo-proposta { margin-top: 20px; }
 
 .sobretitulo {
@@ -415,16 +414,16 @@ html:not(.sem-js) [data-capa-item] { animation: capa-entra .9s var(--e-entrar) b
 @keyframes frase-acende { from { opacity: .3; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 
 /* ==========================================================================
-   3. Piloto: diagrama SVG e painel
+   3. Projeto: diagrama SVG e painel
    ========================================================================== */
-.sec-piloto { padding-top: 28px; padding-bottom: clamp(48px, 6vw, 96px); }
-.piloto-topo { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(24px, 4vw, 64px); align-items: end; margin-bottom: 14px; }
-.piloto-topo .titulo-secao { font-size: clamp(28px, 3vw, 40px); max-width: 24ch; }
-.piloto-topo .sobretitulo { margin-bottom: 12px; }
-.piloto-topo .lead { font-size: 16px; margin-top: 0; max-width: 60ch; }
-.piloto-lado { display: grid; gap: 14px; }
-.piloto-lado .diagrama-barra { gap: 16px; flex-wrap: nowrap; }
-@media (max-width: 900px) { .piloto-topo { grid-template-columns: 1fr; } .piloto-lado .diagrama-barra { flex-wrap: wrap; } }
+.sec-projeto { padding-top: 28px; padding-bottom: clamp(48px, 6vw, 96px); }
+.projeto-topo { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(24px, 4vw, 64px); align-items: end; margin-bottom: 14px; }
+.projeto-topo .titulo-secao { font-size: clamp(28px, 3vw, 40px); max-width: 24ch; }
+.projeto-topo .sobretitulo { margin-bottom: 12px; }
+.projeto-topo .lead { font-size: 16px; margin-top: 0; max-width: 60ch; }
+.projeto-lado { display: grid; gap: 14px; }
+.projeto-lado .diagrama-barra { gap: 16px; flex-wrap: nowrap; }
+@media (max-width: 900px) { .projeto-topo { grid-template-columns: 1fr; } .projeto-lado .diagrama-barra { flex-wrap: wrap; } }
 .diagrama-bloco { display: grid; gap: 20px; }
 .diagrama-barra { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
 .diagrama-dica { color: var(--tinta-3); font-size: 14px; line-height: 1.45; max-width: 42ch; }
@@ -435,7 +434,6 @@ html:not(.sem-js) [data-capa-item] { animation: capa-entra .9s var(--e-entrar) b
 
 .dg-no { cursor: pointer; outline: none; }
 .dg-caixa { fill: var(--papel); stroke: var(--traco-forte); stroke-width: 1.25; transition: stroke .2s ease, fill .2s ease; }
-.dg-no.onda .dg-caixa { stroke-dasharray: 7 6; }
 .dg-no, .dg-aresta { transition: opacity .2s ease; }
 .dg-no.aceso .dg-caixa { stroke: var(--ceu); fill: var(--ceu-suave); }
 .dg-no[aria-pressed="true"] .dg-caixa { stroke: var(--rumo); stroke-width: 2.5; fill: var(--rumo-suave); }
@@ -449,25 +447,17 @@ html:not(.sem-js) [data-capa-item] { animation: capa-entra .9s var(--e-entrar) b
 .dg-titulo { font: 620 16px var(--f-disp); fill: var(--tinta); }
 .dg-titulo-g { font: 650 19px var(--f-disp); fill: var(--tinta); }
 .dg-sub { font: 400 13px var(--f-texto); fill: var(--tinta-2); }
-.dg-selo-fundo-piloto { fill: var(--ceu-suave); stroke: var(--ceu); stroke-width: 1; }
-.dg-no.aceso .dg-selo-fundo-piloto, .dg-no[aria-pressed="true"] .dg-selo-fundo-piloto { fill: var(--papel); }
-.dg-selo-txt-piloto { font: 600 12px var(--f-texto); fill: var(--rumo); }
-[data-tema="escuro"] .dg-selo-txt-piloto { fill: var(--ceu-texto); }
-.dg-selo-fundo-onda { fill: none; stroke: var(--traco-forte); stroke-width: 1; stroke-dasharray: 3 3; }
-.dg-selo-txt-onda { font: 600 12px var(--f-texto); fill: var(--tinta-2); }
-.dg-selo-icone { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-.dg-selo-icone-piloto { stroke: var(--rumo); }
-[data-tema="escuro"] .dg-selo-icone-piloto { stroke: var(--ceu-texto); }
-.dg-selo-icone-onda { stroke: var(--tinta-2); }
+.dg-pilula-fundo { fill: var(--ceu-suave); stroke: var(--ceu); stroke-width: 1; }
+.dg-no.aceso .dg-pilula-fundo, .dg-no[aria-pressed="true"] .dg-pilula-fundo { fill: var(--papel); }
+.dg-pilula-txt { font: 600 12px var(--f-texto); fill: var(--rumo); text-anchor: middle; }
+[data-tema="escuro"] .dg-pilula-txt { fill: var(--ceu-texto); }
 .dg-aresta { fill: none; stroke: var(--traco-forte); stroke-width: 2; stroke-linecap: round; transition: stroke .25s ease, stroke-width .25s ease, opacity .2s ease; }
-.dg-aresta.onda { stroke-dasharray: 6 7; }
 .dg-aresta.aceso { stroke: var(--ceu); stroke-width: 3; }
 .dg-ponta { fill: var(--traco-forte); transition: fill .25s ease; }
 .dg-ponta.aceso { fill: var(--ceu); }
 .dg-seta-p { fill: var(--traco-forte); }
 .dg-seta-a { fill: var(--ceu); }
 .dg-pulso { fill: var(--ceu); stroke: var(--papel); stroke-width: 2.5; }
-.dg-onda-rotulo { font: 600 11px var(--f-texto); letter-spacing: .06em; text-transform: uppercase; fill: var(--tinta-3); }
 
 .painel-no { background: var(--papel); border: 1px solid var(--traco); border-radius: var(--r-cartao); padding: 24px 28px; min-height: 148px; }
 .painel-vazio { color: var(--tinta-3); }
@@ -601,7 +591,7 @@ html:not(.sem-js) .painel-no > :not(.painel-vazio) { animation: painel-entra .35
 .sem-js .segmentado { display: none; }
 
 /* ==========================================================================
-   7. Depois: linha do tempo
+   7. Entrega: linha do tempo
    ========================================================================== */
 .linha-tempo { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
 .linha-tempo::before, .linha-tempo::after { content: ""; position: absolute; left: 22px; right: 22px; top: 21px; height: 2px; background: var(--traco); }
@@ -609,9 +599,8 @@ html:not(.sem-js) .painel-no > :not(.painel-vazio) { animation: painel-entra .35
 .lt-item { position: relative; padding-top: 64px; display: grid; gap: 10px; justify-items: start; align-content: start; }
 .lt-item h3 { font: 620 20px/1.25 var(--f-disp); letter-spacing: -.01em; }
 .lt-item p { color: var(--tinta-2); font-size: 15px; max-width: 30ch; }
-.lt-marca { position: absolute; left: 0; top: 0; width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; border-radius: var(--r-pilula); background: var(--papel); border: 2px dashed var(--traco-forte); color: var(--tinta-2); z-index: 1; }
-.lt-item:first-child .lt-marca { background: var(--rumo); border: 2px solid var(--rumo); color: var(--sobre-rumo); }
-.lt-item:last-child .lt-marca { border-style: solid; }
+.lt-marca { position: absolute; left: 0; top: 0; width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; border-radius: var(--r-pilula); background: var(--rumo); border: 2px solid var(--rumo); color: var(--sobre-rumo); z-index: 1; }
+.entrega-nota { margin-top: clamp(32px, 4vw, 56px); color: var(--tinta-2); font-size: 15px; max-width: 60ch; }
 html:not(.sem-js) .linha-tempo .lt-item { opacity: 0; transform: translateY(14px); transition: opacity .6s var(--e-entrar), transform .6s var(--e-entrar); transition-delay: calc(var(--i) * 160ms + 200ms); }
 html:not(.sem-js) .linha-tempo.revelado .lt-item { opacity: 1; transform: none; }
 .linha-tempo.revelado::after { transform: scaleX(1); transition: transform 1.3s var(--e-mover) .2s; }
@@ -645,10 +634,10 @@ html.sem-js .linha-tempo::after { transform: scaleX(1); }
 .tempo-linha em { font-style: normal; color: var(--tinta-2); font-weight: 500; }
 .tempo-linha i { display: block; height: 14px; border-radius: var(--r-pilula); transform-origin: 0 50%; }
 .tempo-hoje i { background: var(--g-contratado); width: 100%; }
-.tempo-piloto i { background: var(--g-realizado); width: 6%; min-width: 10px; }
+.tempo-com i { background: var(--g-realizado); width: 6%; min-width: 10px; }
 html:not(.sem-js) .aceite-card .tempo-linha i, html:not(.sem-js) .aceite-card .igual-barra i { transform: scaleX(0); transition: transform .9s var(--e-mover) .3s; }
 html:not(.sem-js) .aceite-card.revelado .tempo-linha i, html:not(.sem-js) .aceite-card.revelado .igual-barra i { transform: scaleX(1); }
-html:not(.sem-js) .aceite-card .tempo-piloto i { transition-delay: .9s; transition-duration: .4s; }
+html:not(.sem-js) .aceite-card .tempo-com i { transition-delay: .9s; transition-duration: .4s; }
 .fecho { margin-top: clamp(40px, 5vw, 72px); display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; text-align: center; font: 500 clamp(18px, 1.8vw, 22px)/1.4 var(--f-disp); }
 @media (max-width: 800px) { .aceite-grade { grid-template-columns: 1fr; } .tempo-linha { grid-template-columns: 72px minmax(0, 1fr) 60px; } }
 
@@ -794,9 +783,7 @@ html:not(.sem-js) [data-revela].revelado { opacity: 1; transform: none; }
 
 /* ---------- Selos e chips ---------- */
 .bus-app .bus-selo { display: inline-flex; align-items: center; gap: 5px; height: 24px; padding: 0 10px; border-radius: var(--r-pilula); font: 600 12px/16px var(--f-texto); white-space: nowrap; }
-.bus-app .bus-selo.piloto { background: var(--ceu-suave); color: var(--rumo); }
-[data-tema="escuro"] .bus-app .bus-selo.piloto { color: var(--ceu-texto); }
-.bus-app .bus-selo.onda, .bus-app .bus-selo.neutro { border: 1px dashed var(--traco-forte); color: var(--tinta-2); }
+.bus-app .bus-selo.neutro { border: 1px dashed var(--traco-forte); color: var(--tinta-2); }
 .bus-app .bus-selo.motor { background: var(--papel-3); color: var(--tinta-2); }
 .bus-app .bus-chips { display: flex; flex-wrap: wrap; gap: 8px; }
 .bus-app .bus-chip { display: inline-flex; align-items: center; gap: 6px; min-height: 32px; padding: 4px 12px; border: 1px solid var(--traco-forte); border-radius: var(--r-pilula); background: var(--papel); color: var(--tinta); font: 400 13px/18px var(--f-texto); text-align: left; transition: background-color 140ms ease, border-color 140ms ease, transform 140ms var(--e-entrar); }
@@ -819,6 +806,7 @@ html:not(.sem-js) [data-revela].revelado { opacity: 1; transform: none; }
 .bus-app .bus-vazio-linha { margin: 8px 0 24px; max-width: 62ch; color: var(--tinta-2); font-size: 15px; line-height: 22px; }
 .bus-app .bus-sugestoes { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 10px; width: 100%; text-align: left; }
 .bus-app .bus-sugestao { display: flex; flex-direction: column; align-items: flex-start; justify-content: space-between; gap: 10px; padding: 12px 14px; border: 1px solid var(--traco); border-radius: var(--r-cartao); background: var(--papel); box-shadow: var(--sombra-1); font: 400 14px/20px var(--f-texto); color: var(--tinta); text-align: left; transition: transform 160ms var(--e-entrar), box-shadow 160ms ease, border-color 160ms ease; }
+.bus-app .bus-sugestao-tema { font: 500 12px/16px var(--f-texto); color: var(--tinta-3); }
 .bus-app .bus-msgs { display: flex; flex-direction: column; gap: 24px; max-width: 860px; margin: 0 auto; padding: 24px 24px 12px; }
 .bus-app .bus-msg.usuario { align-self: flex-end; max-width: 82%; animation: bus-entra 260ms var(--e-entrar) both; }
 .bus-app .bus-balao { padding: 10px 16px; border-radius: var(--r-cartao); background: var(--ceu-suave); color: var(--tinta); font-size: 15px; line-height: 22px; overflow-wrap: anywhere; }
@@ -887,6 +875,7 @@ html:not(.sem-js) [data-revela].revelado { opacity: 1; transform: none; }
 .bus-app .bus-sw-piso { width: 3px; height: 14px; border-radius: 1px; background: var(--alerta); }
 .bus-app .bus-sw-ref { width: 0; height: 14px; border-radius: 0; border-left: 1.5px dashed var(--traco-forte); }
 .bus-app .bus-sw-fat { background: var(--g-faturado); }
+.bus-app .bus-sw-janela { width: 3px; height: 14px; border-radius: 1px; background: var(--tinta); }
 .bus-app .bus-sw-contr { background: var(--g-contratado); }
 .bus-app .bus-tabela-rolagem { overflow-x: auto; border: 1px solid var(--traco); border-radius: var(--r-controle); }
 .bus-app .bus-tabela { width: 100%; min-width: 560px; border-collapse: collapse; font: 400 13px/18px var(--f-texto); font-variant-numeric: tabular-nums; }
@@ -894,7 +883,9 @@ html:not(.sem-js) [data-revela].revelado { opacity: 1; transform: none; }
 .bus-app .bus-tabela td { padding: 10px 12px; border-top: 1px solid var(--traco); vertical-align: middle; }
 .bus-app .bus-tabela .num { text-align: right; font-variant-numeric: tabular-nums; }
 .bus-app .bus-tabela td .bus-num { font-weight: 600; }
-.bus-app .bus-rico-q4 .bus-tabela, .bus-app .bus-rico-q5 .bus-tabela, .bus-app .bus-rico-q9 .bus-tabela { min-width: 520px; }
+.bus-app .bus-rico-q4 .bus-tabela, .bus-app .bus-rico-q5 .bus-tabela, .bus-app .bus-rico-q9 .bus-tabela, .bus-app .bus-rico-q11 .bus-tabela, .bus-app .bus-rico-q12 .bus-tabela { min-width: 520px; }
+.bus-app .bus-rico-q8 .bus-tabela { min-width: 640px; }
+.bus-app .bus-rico-q8 .bus-tabela-rolagem + .bus-sub, .bus-app .bus-rico-q8 .bus-nota + .bus-sub { margin-top: 20px; }
 
 /* ---------- Gráficos ---------- */
 .bus-app .bus-grafico { width: 100%; min-height: 40px; }
@@ -910,6 +901,10 @@ html:not(.sem-js) [data-revela].revelado { opacity: 1; transform: none; }
 .bus-app rect.bus-barra.alerta { fill: var(--alerta); }
 .bus-app rect.bus-seg-fat { fill: var(--g-faturado); }
 .bus-app rect.bus-seg-contr, .bus-app rect.bus-coluna.contr { fill: var(--g-contratado); }
+.bus-app rect.bus-seg-alerta, .bus-app rect.bus-coluna.alerta { fill: var(--alerta); }
+.bus-app text.bus-seg-alerta { fill: var(--sobre-rumo); }
+.bus-app .bus-eixo.hoje { fill: var(--tinta); font-weight: 700; }
+.bus-app .bus-janela-marca { stroke: var(--tinta); stroke-width: 2.5; stroke-linecap: round; }
 .bus-app text.bus-seg-val { font: 600 12px var(--f-texto); font-variant-numeric: tabular-nums; }
 .bus-app text.bus-seg-real { fill: var(--sobre-rumo); }
 .bus-app text.bus-seg-fat { fill: var(--tinta); }
@@ -1065,7 +1060,7 @@ html:not(.sem-js) [data-revela].revelado { opacity: 1; transform: none; }
 .bus-app .bus-cat-corpo { display: grid; gap: 6px; min-width: 0; align-content: start; }
 .bus-app .bus-cat-pergunta { font: 500 15px/22px var(--f-texto); overflow-wrap: anywhere; }
 .bus-app .bus-cat-meta { font: 400 13px/18px var(--f-texto); color: var(--tinta-2); }
-.bus-app .bus-cat-lado { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+.bus-app .bus-cat-lado { display: flex; flex-direction: column; align-items: flex-end; justify-content: flex-start; gap: 8px; }
 .bus-app .bus-cat-botoes { display: flex; gap: 2px; }
 
 /* ---------- Hover: só ponteiro fino ---------- */
@@ -1138,7 +1133,7 @@ html:not(.sem-js) [data-revela].revelado { opacity: 1; transform: none; }
 .bus-app[data-largura="minimo"] .bus-cat-corpo-grade { padding: 0 12px 16px; gap: 16px; }
 .bus-app[data-largura="minimo"] .bus-confirma { margin: 0 12px 12px; }
 .bus-app[data-largura="minimo"] .bus-cat-item { grid-template-columns: 22px minmax(0, 1fr); }
-.bus-app[data-largura="minimo"] .bus-cat-lado { grid-column: 1 / -1; flex-direction: row; justify-content: space-between; align-items: center; }
+.bus-app[data-largura="minimo"] .bus-cat-lado { grid-column: 1 / -1; flex-direction: row; justify-content: flex-end; align-items: center; }
 .bus-app[data-largura="minimo"] .bus-form { padding: 14px; }
 .bus-app[data-largura="minimo"] .bus-demo { top: 68px; flex-direction: column; align-items: stretch; gap: 8px; padding: 10px 12px; }
 .bus-app[data-largura="minimo"] .bus-demo-botoes { justify-content: space-between; }
@@ -1231,11 +1226,11 @@ html:not(.sem-js) [data-revela].revelado { opacity: 1; transform: none; }
     </span>
     <nav class="nav" aria-label="Seções da página" id="nav-principal">
       <a href="#hoje">Hoje</a>
-      <a href="#piloto">O piloto</a>
+      <a href="#projeto">O projeto</a>
       <a href="#bussola">A Bússola</a>
       <a href="#origem">Origem</a>
       <a href="#ambiente">Ambiente</a>
-      <a href="#depois">Depois</a>
+      <a href="#entrega">Entrega</a>
       <a href="#aceite">Aceite</a>
     </nav>
     <div class="cabecalho-acoes">
@@ -1252,11 +1247,11 @@ html:not(.sem-js) [data-revela].revelado { opacity: 1; transform: none; }
   <div class="menu-painel" id="menu-painel" hidden>
     <nav aria-label="Seções da página (menu)">
       <a href="#hoje">Como a informação circula hoje</a>
-      <a href="#piloto">O piloto</a>
+      <a href="#projeto">O projeto</a>
       <a href="#bussola">A Bússola</a>
       <a href="#origem">De onde vem cada número</a>
       <a href="#ambiente">No ambiente Microsoft da Rumo</a>
-      <a href="#depois">Depois do piloto</a>
+      <a href="#entrega">O que o projeto entrega</a>
       <a href="#aceite">Como saber que deu certo</a>
     </nav>
     <button type="button" class="btn btn-primario" id="btn-abrir-menu">Abrir a Bússola</button>
@@ -1273,12 +1268,12 @@ html:not(.sem-js) [data-revela].revelado { opacity: 1; transform: none; }
       <p class="sobretitulo-capa" data-capa-item style="--i:1">Protótipo para o aprofundamento · 25/11/2026</p>
       <h1 id="capa-titulo" data-capa-item style="--i:2">Bússola Comercial</h1>
       <p class="capa-frase" data-capa-item style="--i:3">A resposta comercial em minutos, com a origem de cada número.</p>
-      <p class="capa-paragrafo" data-capa-item style="--i:4">A base única do cliente reúne contratos, volumes e faturamento do comercial, e a Bússola responde perguntas sobre ela, informando de onde vem cada número.</p>
+      <p class="capa-paragrafo" data-capa-item style="--i:4">A base única do cliente reúne contratos, volumes, faturamento e capacidade do terminal ao porto, e a Bússola responde perguntas sobre ela, informando de onde vem cada número.</p>
       <div class="capa-botoes" data-capa-item style="--i:5">
         <button type="button" class="btn btn-capa-primario" id="btn-demo">
           <svg class="ico" aria-hidden="true"><use href="#i-play"/></svg>Ver a Bússola funcionando
         </button>
-        <a class="btn btn-capa-secundario" href="#piloto" id="btn-conhecer">Conhecer o piloto</a>
+        <a class="btn btn-capa-secundario" href="#projeto" id="btn-conhecer">Conhecer o projeto</a>
       </div>
     </div>
     <div class="capa-palco">
@@ -1330,18 +1325,18 @@ html:not(.sem-js) [data-revela].revelado { opacity: 1; transform: none; }
   </div>
 </section>
 
-<!-- 3. Piloto -->
-<section class="secao sec-papel-2 sec-piloto" id="piloto" aria-labelledby="piloto-titulo">
+<!-- 3. Projeto -->
+<section class="secao sec-papel-2 sec-projeto" id="projeto" aria-labelledby="projeto-titulo">
   <div class="coluna">
-    <div class="piloto-topo" data-revela>
+    <div class="projeto-topo" data-revela>
       <div>
-        <p class="sobretitulo">O piloto</p>
-        <h2 class="titulo-secao" id="piloto-titulo">A base única e a Bússola, numa carteira</h2>
+        <p class="sobretitulo">O projeto</p>
+        <h2 class="titulo-secao" id="projeto-titulo">As duas carteiras e a capacidade, do terminal ao porto</h2>
       </div>
-      <div class="piloto-lado">
-        <p class="lead">O piloto é feito numa carteira, escolhida com a Rumo. As quatro fontes alimentam a base única do cliente, e a Bússola responde sobre ela. A segunda carteira e a capacidade entram em ondas seguintes.</p>
+      <div class="projeto-lado">
+        <p class="lead">O projeto cobre as duas carteiras, grãos e farelo e X-grãos, e a capacidade, do terminal ao porto. As cinco fontes alimentam a base única do cliente, e a Bússola responde sobre ela.</p>
         <div class="diagrama-barra">
-          <p class="diagrama-dica" id="piloto-dica">Passe o ponteiro sobre uma etapa para ver o que ela alimenta. Clique para ver o que recebe e entrega.</p>
+          <p class="diagrama-dica" id="projeto-dica">Passe o ponteiro sobre uma etapa para ver o que ela alimenta. Clique para ver o que recebe e entrega.</p>
           <button type="button" class="btn btn-tonal" id="btn-fluxo">
             <svg class="ico" aria-hidden="true"><use href="#i-play"/></svg><span>Rodar o fluxo</span>
           </button>
@@ -1349,13 +1344,12 @@ html:not(.sem-js) [data-revela].revelado { opacity: 1; transform: none; }
       </div>
     </div>
     <div class="diagrama-bloco" data-revela>
-      <div class="diagrama-svg" id="piloto-diagrama" aria-describedby="piloto-dica"></div>
-      <ul class="lista-sem-js" aria-label="Etapas do piloto">
-        <li><strong>Fontes no piloto:</strong> faturamento no SAP; contratos de longo prazo e simplificados; planilhas e e-mails da venda dos vales; cadastro e DNA do cliente.</li>
-        <li><strong>Base única do cliente</strong> recebe as quatro fontes. <strong>Bússola</strong> responde sobre a base, no Teams ou na web.</li>
-        <li><strong>Ondas seguintes:</strong> segunda carteira e capacidade (fila no terminal, ferrovia, armazém e porto).</li>
+      <div class="diagrama-svg" id="projeto-diagrama" aria-describedby="projeto-dica"></div>
+      <ul class="lista-sem-js" aria-label="Etapas do projeto">
+        <li><strong>Fontes:</strong> faturamento no SAP; contratos de longo prazo e simplificados; planilhas e e-mails da venda dos vales; cadastro e DNA do cliente; capacidade (fila no terminal, ferrovia, armazém e porto).</li>
+        <li><strong>Base única do cliente</strong> recebe as cinco fontes, para as duas carteiras: grãos e farelo e X-grãos. <strong>Bússola</strong> responde sobre a base, no Teams ou na web.</li>
       </ul>
-      <div class="painel-no" id="piloto-painel" aria-live="polite">
+      <div class="painel-no" id="projeto-painel" aria-live="polite">
         <p class="painel-vazio">Selecione uma etapa do diagrama para ver o que ela recebe e o que entrega.</p>
       </div>
     </div>
@@ -1368,7 +1362,7 @@ html:not(.sem-js) [data-revela].revelado { opacity: 1; transform: none; }
     <div class="cabeca-secao cabeca-bussola" data-revela>
       <div>
         <p class="sobretitulo">A Bússola</p>
-        <h2 class="titulo-secao" id="bussola-titulo">Faça uma pergunta à carteira</h2>
+        <h2 class="titulo-secao" id="bussola-titulo">Faça uma pergunta à base única</h2>
         <p class="lead">Escolha uma pergunta sugerida, digite a sua ou inicie a apresentação guiada. Cada número abre a sua origem.</p>
       </div>
       <div class="bussola-botoes">
@@ -1488,39 +1482,37 @@ html:not(.sem-js) [data-revela].revelado { opacity: 1; transform: none; }
   </div>
 </section>
 
-<!-- 7. Depois -->
-<section class="secao sec-papel" id="depois" aria-labelledby="depois-titulo">
+<!-- 7. Entrega -->
+<section class="secao sec-papel" id="entrega" aria-labelledby="entrega-titulo">
   <div class="coluna">
     <div class="cabeca-secao" data-revela>
-      <p class="sobretitulo">Depois do piloto</p>
-      <h2 class="titulo-secao" id="depois-titulo">O mesmo método chega às próximas frentes</h2>
-      <p class="lead">A ordem abaixo é a sequência proposta. Cada etapa começa quando a anterior estiver validada com a Rumo.</p>
+      <p class="sobretitulo">Ordem de construção</p>
+      <h2 class="titulo-secao" id="entrega-titulo">O que o projeto entrega</h2>
+      <p class="lead">A construção segue a ordem abaixo, e cada etapa se apoia na anterior.</p>
     </div>
     <ol class="linha-tempo" data-revela>
       <li class="lt-item" style="--i:0">
-        <span class="lt-marca" aria-hidden="true"><svg class="ico"><use href="#i-check"/></svg></span>
-        <h3>Piloto</h3>
-        <span class="selo selo-piloto"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>No piloto</span>
-        <p>Base única e Bússola numa carteira, escolhida com a Rumo.</p>
+        <span class="lt-marca" aria-hidden="true"><svg class="ico"><use href="#i-db"/></svg></span>
+        <h3>Base única do cliente</h3>
+        <p>Cadastro, contratos, volumes e faturamento das duas carteiras, grãos e farelo e X-grãos, numa referência só.</p>
       </li>
       <li class="lt-item" style="--i:1">
-        <span class="lt-marca" aria-hidden="true"><svg class="ico"><use href="#i-arco"/></svg></span>
-        <h3>Segunda carteira</h3>
-        <span class="selo selo-onda"><svg class="ico" aria-hidden="true"><use href="#i-arco"/></svg>Onda seguinte</span>
-        <p>Outro grupo de clientes entra na base única, com os mesmos quatro tipos de fonte.</p>
+        <span class="lt-marca" aria-hidden="true"><svg class="ico"><use href="#i-trem"/></svg></span>
+        <h3>Capacidade</h3>
+        <p>Fila de caminhões no terminal, fluxo da ferrovia, estoque do armazém e janela no porto de Santos.</p>
       </li>
       <li class="lt-item" style="--i:2">
-        <span class="lt-marca" aria-hidden="true"><svg class="ico"><use href="#i-arco"/></svg></span>
-        <h3>Capacidade</h3>
-        <span class="selo selo-onda"><svg class="ico" aria-hidden="true"><use href="#i-arco"/></svg>Onda seguinte</span>
-        <p>Fila de caminhões no terminal, fluxo da ferrovia, estoque do armazém e porto.</p>
+        <span class="lt-marca" aria-hidden="true"><svg class="ico"><use href="#i-chat"/></svg></span>
+        <h3>Bússola</h3>
+        <p>Catálogo de perguntas fechado com a diretoria e a origem de cada número.</p>
       </li>
       <li class="lt-item" style="--i:3">
-        <span class="lt-marca" aria-hidden="true"><svg class="ico"><use href="#i-trem"/></svg></span>
-        <h3>Outras áreas</h3>
-        <p>A base única passa a ser a fonte para quem quiser migrar o seu BI. As outras áreas seguem com o mesmo método, em proposta própria.</p>
+        <span class="lt-marca" aria-hidden="true"><svg class="ico"><use href="#i-check"/></svg></span>
+        <h3>Uso e entrega à Rumo</h3>
+        <p>A base única passa a ser a fonte para quem quiser migrar o seu BI.</p>
       </li>
     </ol>
+    <p class="entrega-nota" data-revela>Outras áreas, como RH e processos, podem seguir o mesmo método em proposta própria.</p>
   </div>
 </section>
 
@@ -1529,7 +1521,7 @@ html:not(.sem-js) [data-revela].revelado { opacity: 1; transform: none; }
   <div class="coluna">
     <div class="cabeca-secao" data-revela>
       <p class="sobretitulo">Critério de aceite</p>
-      <h2 class="titulo-secao" id="aceite-titulo">Como saber que o piloto deu certo</h2>
+      <h2 class="titulo-secao" id="aceite-titulo">Como saber que o projeto deu certo</h2>
       <p class="selo selo-proposta"><svg class="ico" aria-hidden="true"><use href="#i-info"/></svg>Proposta, a definir com vocês</p>
     </div>
     <div class="aceite-grade">
@@ -1545,14 +1537,14 @@ html:not(.sem-js) [data-revela].revelado { opacity: 1; transform: none; }
       <article class="aceite-card" data-revela style="--i:1">
         <div class="aceite-visual aceite-tempo" aria-hidden="true">
           <span class="tempo-linha tempo-hoje"><b>Hoje</b><i></i><em>dias</em></span>
-          <span class="tempo-linha tempo-piloto"><b>No piloto</b><i></i><em>minutos</em></span>
+          <span class="tempo-linha tempo-com"><b>Bússola</b><i></i><em>minutos</em></span>
         </div>
         <h3>O tempo da resposta cai de dias para minutos</h3>
         <p>Uma pergunta que hoje espera por planilha e reunião passa a ser respondida em minutos.</p>
       </article>
     </div>
     <div class="fecho" data-revela>
-      <p>Teste uma pergunta da carteira na Bússola.</p>
+      <p>Teste uma pergunta na Bússola.</p>
       <button type="button" class="btn btn-primario" id="btn-fecho"><svg class="ico" aria-hidden="true"><use href="#i-chat"/></svg>Abrir a Bússola</button>
     </div>
   </div>
@@ -1739,12 +1731,50 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
     }
   })();
 
-  // ---------- Capacidade (onda seguinte, ilustrativa) ----------
+  // ---------- Capacidade: fila no terminal, armazém, ferrovia e porto de Santos ----------
+  // Semana corrente (segunda a domingo). Hoje é quarta, 25/11: os dias anteriores e hoje são realizados, os seguintes são projeção.
+  var SEMANA = ["2026-11-23", "2026-11-24", "2026-11-25", "2026-11-26", "2026-11-27", "2026-11-28", "2026-11-29"];
+  var DIAS_SEMANA = ["seg", "ter", "qua", "qui", "sex", "sáb", "dom"];
+  // Ocupação do armazém a partir da qual o terminal fica com pouca margem para novos embarques.
+  var LIMIAR_OCUPACAO = 90;
+
+  // armazemCapacidade em mil t. ocupacaoInicial e ocupacaoPorDia (fração da capacidade) dão a trajetória da semana.
   var CAPACIDADE = {
-    "Rondonópolis": { moegas: 6, descargaMin: 12, filaPorHora: [28, 34, 47, 58, 66, 71, 63, 59, 64], proximosTrens: ["15:40", "21:10", "04:30"] },
-    "Alto Araguaia": { moegas: 4, descargaMin: 13, filaPorHora: [19, 22, 31, 36, 42, 38, 35, 33, 37], proximosTrens: ["16:25", "22:50", "05:15"] },
-    "Alto Taquari": { moegas: 4, descargaMin: 14, filaPorHora: [12, 15, 21, 26, 30, 33, 29, 27, 24], proximosTrens: ["17:05", "23:30", "06:00"] }
+    "Rondonópolis": { moegas: 6, descargaMin: 12, filaPorHora: [28, 34, 47, 58, 66, 71, 63, 59, 64], horariosTrem: ["04:30", "15:40", "21:10"], armazemCapacidade: 220, ocupacaoInicial: 0.68, ocupacaoPorDia: 0.004 },
+    "Alto Araguaia": { moegas: 4, descargaMin: 13, filaPorHora: [19, 22, 31, 36, 42, 38, 35, 33, 37], horariosTrem: ["05:15", "16:25", "22:50"], armazemCapacidade: 160, ocupacaoInicial: 0.79, ocupacaoPorDia: 0.026 },
+    "Alto Taquari": { moegas: 4, descargaMin: 14, filaPorHora: [12, 15, 21, 26, 30, 33, 29, 27, 24], horariosTrem: ["06:00", "17:05", "23:30"], armazemCapacidade: 130, ocupacaoInicial: 0.55, ocupacaoPorDia: 0.012 }
   };
+
+  // Estoque diário do armazém e programação de trens da semana, com a mesma semente das séries de volume.
+  TERMINAIS.forEach(function (terminal) {
+    var t = CAPACIDADE[terminal];
+    t.estoque = SEMANA.map(function (_, i) {
+      var fracao = t.ocupacaoInicial + i * t.ocupacaoPorDia + (sorteio() - 0.5) * 0.04;
+      return arred1(t.armazemCapacidade * fracao);
+    });
+    t.trens = [];
+    SEMANA.forEach(function (dia) {
+      t.horariosTrem.forEach(function (hora) {
+        t.trens.push({ dia: dia, hora: hora, destino: "Santos", vagoes: 76 + Math.floor(sorteio() * 17) });
+      });
+    });
+  });
+
+  // Janela de descarga no porto de Santos, por semana de dezembro. pesoVendas reparte o volume de dezembro entre
+  // as semanas; fatorJanela é a janela de cada carteira como fração do volume planejado de dezembro dela.
+  var PORTO = {
+    semanas: [
+      { ini: "2026-11-30", fim: "2026-12-06" }, { ini: "2026-12-07", fim: "2026-12-13" }, { ini: "2026-12-14", fim: "2026-12-20" },
+      { ini: "2026-12-21", fim: "2026-12-27" }, { ini: "2026-12-28", fim: "2027-01-03" }
+    ],
+    pesoVendas: [0.17, 0.31, 0.27, 0.15, 0.10],
+    fatorJanela: { graos: [0.19, 0.25, 0.25, 0.20, 0.13], xgraos: [0.21, 0.24, 0.22, 0.19, 0.14] },
+    janela: { graos: [], xgraos: [] }
+  };
+  Object.keys(PORTO.fatorJanela).forEach(function (carteira) {
+    var planejadoDezembro = soma(CLIENTES.filter(function (c) { return c.carteira === carteira; }).map(function (c) { return volumes[c.id][12].contratado; }));
+    PORTO.janela[carteira] = PORTO.fatorJanela[carteira].map(function (fator) { return arred1(planejadoDezembro * fator * (1 + (sorteio() - 0.5) * 0.04)); });
+  });
 
   // ---------- Fontes ----------
   var FONTES = {
@@ -1753,7 +1783,10 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
     planilhas: { id: "planilhas", nome: "Planilhas e e-mails da venda dos vales", dono: "Gerência comercial · Grãos e farelo", frequencia: "Diária", extracao: "25/11/2026 07:40", tabela: "base_unica.vendas_planilha" },
     dna: { id: "dna", nome: "Cadastro e DNA do cliente", dono: "Planejamento comercial", frequencia: "Mensal", extracao: "03/11/2026 09:00", tabela: "base_unica.cliente_dna" },
     embarques: { id: "embarques", nome: "Volumes embarcados nos terminais", dono: "Planejamento comercial", frequencia: "Diária", extracao: "25/11/2026 06:30", tabela: "base_unica.volume_mensal" },
-    capacidade: { id: "capacidade", nome: "Capacidade e operação dos terminais", dono: "Planejamento comercial", frequencia: "A cada 15 minutos", extracao: "25/11/2026 14:05", tabela: "base_unica.fila_terminal" }
+    fila: { id: "fila", nome: "Fila de caminhões nos terminais", dono: "Operação do terminal", frequencia: "A cada 15 minutos", extracao: "25/11/2026 14:05", tabela: "base_unica.fila_terminal" },
+    armazem: { id: "armazem", nome: "Estoque dos armazéns dos terminais", dono: "Operação do terminal", frequencia: "Diária", extracao: "25/11/2026 06:00", tabela: "base_unica.estoque_armazem" },
+    ferrovia: { id: "ferrovia", nome: "Programação de trens da ferrovia", dono: "Planejamento da ferrovia", frequencia: "Diária", extracao: "25/11/2026 05:30", tabela: "base_unica.trens_programacao" },
+    porto: { id: "porto", nome: "Janela de descarga no porto de Santos", dono: "Operação portuária", frequencia: "Semanal", extracao: "23/11/2026 17:00", tabela: "base_unica.janela_porto" }
   };
 
   var CARTEIRA_NOME = { graos: "Grãos e farelo", xgraos: "X-grãos" };
@@ -1766,6 +1799,11 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
   function clientesDe(carteiras) {
     var escopo = carteiras || ["graos"];
     return CLIENTES.filter(function (c) { return escopo.indexOf(c.carteira) >= 0; });
+  }
+  function terminalCapacidade(terminal) {
+    var t = CAPACIDADE[terminal];
+    if (!t) throw new Error("Terminal desconhecido: " + terminal);
+    return t;
   }
   function contratoLongoPrazo(clienteId) {
     return contratos.filter(function (k) { return k.clienteId === clienteId && k.tipo === "CLP"; })[0];
@@ -1901,14 +1939,67 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
       };
     },
 
-    // Fila de caminhões no terminal (onda seguinte).
+    // Trens programados para sair do terminal depois da hora atual, em ordem de partida.
+    proximosTrens: function (terminal, quantidade) {
+      var t = terminalCapacidade(terminal);
+      var agora = HOJE + " " + AGORA;
+      return t.trens.filter(function (x) { return x.dia + " " + x.hora > agora; }).slice(0, quantidade || 3);
+    },
+
+    // Estoque do armazém do terminal na semana, contra a capacidade. Dias depois de hoje são projeção.
+    armazem: function (terminal) {
+      var t = terminalCapacidade(terminal);
+      var dias = SEMANA.map(function (dia, i) {
+        return { dia: dia, nome: DIAS_SEMANA[i], estoque: t.estoque[i], pct: t.estoque[i] / t.armazemCapacidade * 100, projetado: dia > HOJE };
+      });
+      var hoje = dias.filter(function (d) { return d.dia === HOJE; })[0];
+      var pico = dias.reduce(function (maior, d) { return d.estoque > maior.estoque ? d : maior; }, dias[0]);
+      return {
+        terminal: terminal, capacidade: t.armazemCapacidade, limiar: LIMIAR_OCUPACAO, dias: dias, hoje: hoje, pico: pico,
+        diasAcimaLimiar: dias.filter(function (d) { return d.pct >= LIMIAR_OCUPACAO; })
+      };
+    },
+
+    // Situação do terminal agora: fila, espera estimada, armazém e próximo trem com destino a Santos.
     fila: function (terminal) {
-      var t = CAPACIDADE[terminal];
-      if (!t) throw new Error("Terminal desconhecido: " + terminal);
+      var t = terminalCapacidade(terminal);
       var caminhoes = t.filaPorHora[t.filaPorHora.length - 1];
       var esperaMin = Math.round(caminhoes / t.moegas * t.descargaMin);
-      var proximo = t.proximosTrens.filter(function (h) { return h > AGORA; })[0] || t.proximosTrens[0];
-      return { terminal: terminal, caminhoes: caminhoes, esperaMin: esperaMin, moegas: t.moegas, proximoTrem: proximo, serie: t.filaPorHora, horaInicial: 6, agora: AGORA };
+      var armazem = calc.armazem(terminal);
+      var trens = calc.proximosTrens(terminal, 3);
+      return {
+        terminal: terminal, caminhoes: caminhoes, esperaMin: esperaMin, moegas: t.moegas, descargaMin: t.descargaMin,
+        proximoTrem: trens[0], trens: trens, armazem: armazem,
+        serie: t.filaPorHora, horaInicial: 6, agora: AGORA
+      };
+    },
+
+    // Janela de descarga em Santos contra o volume vendido (e o planejado) dos vales de dezembro, por semana.
+    // A última semana absorve o arredondamento, para a soma bater com o total dos vales.
+    porto: function (carteiras) {
+      var chaves = carteiras || ["graos"];
+      var lista = clientesDe(chaves);
+      var vendidoTotal = soma(lista.map(function (c) { return volumes[c.id][12].vendido; }));
+      var planejadoTotal = soma(lista.map(function (c) { return volumes[c.id][12].contratado; }));
+      var vendidoAcumulado = 0, planejadoAcumulado = 0;
+      var semanas = PORTO.semanas.map(function (s, i) {
+        var ultima = i === PORTO.semanas.length - 1;
+        var vendido = ultima ? arred1(vendidoTotal - vendidoAcumulado) : arred1(vendidoTotal * PORTO.pesoVendas[i]);
+        var planejado = ultima ? arred1(planejadoTotal - planejadoAcumulado) : arred1(planejadoTotal * PORTO.pesoVendas[i]);
+        vendidoAcumulado += vendido; planejadoAcumulado += planejado;
+        var janela = soma(chaves.map(function (k) { return PORTO.janela[k][i]; }));
+        return {
+          ini: s.ini, fim: s.fim, vendido: vendido, planejado: planejado, aVender: arred1(planejado - vendido), janela: janela,
+          saldo: arred1(janela - vendido), excede: vendido > janela, excedePlanejado: planejado > janela
+        };
+      });
+      return {
+        mes: 12, carteiras: chaves, semanas: semanas,
+        vendido: vendidoTotal, planejado: planejadoTotal, janela: soma(semanas.map(function (s) { return s.janela; })),
+        folga: arred1(soma(semanas.map(function (s) { return s.janela; })) - vendidoTotal),
+        semanasExcedidas: semanas.filter(function (s) { return s.excede; }),
+        semanasExcedidasPlanejado: semanas.filter(function (s) { return s.excedePlanejado; })
+      };
     },
 
     // Resumo de uma carteira inteira (usado na pergunta sobre X-grãos).
@@ -1945,7 +2036,7 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
   window.BUS_DADOS = {
     hoje: HOJE, hojeBR: dataBR(HOJE), agora: AGORA, mesAtual: MES_ATUAL, ultimoMesFechado: ULTIMO_MES_FECHADO,
     terminais: TERMINAIS, municipios: MUNICIPIOS, carteiraNome: CARTEIRA_NOME,
-    clientes: CLIENTES, volumes: volumes, contratos: contratos, capacidade: CAPACIDADE, fontes: FONTES,
+    clientes: CLIENTES, volumes: volumes, contratos: contratos, capacidade: CAPACIDADE, porto: PORTO, semana: SEMANA, fontes: FONTES,
     pesoMes: PESO_MES, calc: calc, anatomia: anatomia
   };
 })();
@@ -2006,7 +2097,6 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
     play: '<path d="M6 4v16l14-8Z"/>',
     pause: '<rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/>',
     skip: '<path d="M5 4v16l11-8Z"/><path d="M19 5v14"/>',
-    wave: '<path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/>',
     database: '<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/>',
     file: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/>',
     lock: '<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',
@@ -2083,16 +2173,21 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
       c: ["Planalto Grãos", "Serra Azul Trading", "Cerrado Norte Agro"] }
   ];
 
+  // O id 10 é reservado para a pergunta fora do catálogo; as perguntas de capacidade novas ocupam o 11 e o 12.
+  var FORA_DO_CATALOGO = 10;
+  var TEMAS = ["Clientes e contratos", "Volume e faturamento", "Capacidade"];
   var QS = [
-    { id: 1, texto: "Qual a aderência ao take-or-pay por cliente em 2026?", curto: "Aderência ao take-or-pay por cliente", selo: "piloto", motor: "consulta" },
-    { id: 2, texto: "Qual a regra de take-or-pay do contrato da {c1}?", curto: "Regra de take-or-pay de um contrato", selo: "piloto", motor: "contrato" },
-    { id: 3, texto: "Quanto a {c2} ainda pode mandar para Santos em novembro?", curto: "Saldo do mês de um cliente", selo: "piloto", motor: "consulta" },
-    { id: 4, texto: "Como está a venda dos vales de dezembro?", curto: "Venda dos vales de dezembro", selo: "piloto", motor: "consulta" },
-    { id: 5, texto: "Onde o faturado no SAP não bate com o vendido em outubro?", curto: "Faturado no SAP contra vendido", selo: "piloto", motor: "consulta" },
-    { id: 6, texto: "Me mostra o DNA da {c3}", curto: "DNA de um cliente", selo: "piloto", motor: "consulta" },
-    { id: 7, texto: "Quais contratos vencem nos próximos 6 meses?", curto: "Contratos que vencem em 6 meses", selo: "piloto", motor: "consulta" },
-    { id: 8, texto: "Qual a fila de caminhões no terminal de Rondonópolis agora?", curto: "Fila de caminhões no terminal", selo: "onda", motor: "consulta" },
-    { id: 9, texto: "Como está a carteira de X-grãos?", curto: "Carteira de X-grãos", selo: "onda", motor: "consulta" }
+    { id: 1, texto: "Qual a aderência ao take-or-pay por cliente em 2026?", curto: "Aderência ao take-or-pay por cliente", tema: TEMAS[1], motor: "consulta" },
+    { id: 2, texto: "Qual a regra de take-or-pay do contrato da {c1}?", curto: "Regra de take-or-pay de um contrato", tema: TEMAS[0], motor: "contrato" },
+    { id: 3, texto: "Quanto a {c2} ainda pode mandar para Santos em novembro?", curto: "Saldo do mês de um cliente", tema: TEMAS[1], motor: "consulta" },
+    { id: 4, texto: "Como está a venda dos vales de dezembro?", curto: "Venda dos vales de dezembro", tema: TEMAS[1], motor: "consulta" },
+    { id: 5, texto: "Onde o faturado no SAP não bate com o vendido em outubro?", curto: "Faturado no SAP contra vendido", tema: TEMAS[1], motor: "consulta" },
+    { id: 6, texto: "Me mostra o DNA da {c3}", curto: "DNA de um cliente", tema: TEMAS[0], motor: "consulta" },
+    { id: 7, texto: "Quais contratos vencem nos próximos 6 meses?", curto: "Contratos que vencem em 6 meses", tema: TEMAS[0], motor: "consulta" },
+    { id: 8, texto: "Qual a fila de caminhões no terminal de Rondonópolis agora?", curto: "Fila de caminhões no terminal", tema: TEMAS[2], motor: "consulta" },
+    { id: 9, texto: "Como está a carteira de X-grãos?", curto: "Carteira de X-grãos", tema: TEMAS[1], motor: "consulta" },
+    { id: 11, texto: "Qual a ocupação do armazém de Alto Araguaia esta semana?", curto: "Ocupação do armazém do terminal", tema: TEMAS[2], motor: "consulta" },
+    { id: 12, texto: "O porto comporta o volume vendido de dezembro?", curto: "Porto de Santos em dezembro", tema: TEMAS[2], motor: "consulta" }
   ];
   function qPorId(id) { return QS.filter(function (q) { return q.id === id; })[0]; }
   function exemplo(id, perfil) {
@@ -2101,7 +2196,6 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
   }
   // Perfil de mentira só para preencher o nome de um cliente no texto de exemplo.
   function comClientes(nome) { return { c: [nome, nome, nome] }; }
-  var SELO_NOME = { piloto: "No piloto", onda: "Onda seguinte" };
 
   // =========================================================================
   // Roteamento por palavras-chave
@@ -2134,7 +2228,7 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
   function rotear(texto) {
     var n = norm(texto);
     var cliente = acharCliente(n);
-    var s = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0 };
+    var s = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0, 11: 0, 12: 0 };
     var take = /\b(take or pay|top|take)\b/.test(n);
     if (take) s[1] += 5;
     if (/aderen|cumprimento|cumprindo|\bpiso\b/.test(n)) s[1] += 4;
@@ -2153,15 +2247,20 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
     if (/\bvence|vencem|vencimento|renovac|renovar|expira/.test(n)) s[7] += 7;
     if (/\bfila\b|caminho|\bcapacidade\b|descarga|moega|espera/.test(n)) s[8] += 6;
     if (s[8] > 0 && /terminal|rondonopolis|araguaia|taquari/.test(n)) s[8] += 1;
+    // Armazém do terminal: vence a pergunta de capacidade genérica, que cai na fila.
+    if (/armazem|armazens|estoque|ocupacao|lotacao|armazenagem/.test(n)) s[11] += 9;
+    // Porto de Santos: a palavra Santos sozinha também aparece na pergunta de saldo do mês ("mandar para Santos").
+    if (/\bporto\b|janela|comporta|escoar|escoamento|calado|navio/.test(n)) s[12] += 8;
+    if (/santos/.test(n) && !/mandar|enviar|embarcar|ainda pode|saldo|quanto/.test(n)) s[12] += 5;
     var xg = /\bx ?graos\b/.test(n);
     if (xg) s[9] += 5;
     if (!cliente && /combustive|fertilizante|minerio/.test(n)) s[9] += 5;
     if (s[9] > 0 && /carteira|resumo|panorama|como esta|situacao/.test(n)) s[9] += 2;
     var melhor = 0, melhorScore = 0;
-    for (var id = 1; id <= 9; id++) if (s[id] > melhorScore) { melhorScore = s[id]; melhor = id; }
+    [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12].forEach(function (id) { if (s[id] > melhorScore) { melhorScore = s[id]; melhor = id; } });
     if (melhorScore < 4) {
       // Só o nome de um cliente: a ficha dele é a leitura mais útil.
-      if (cliente) { melhor = 6; melhorScore = 4; } else melhor = 10;
+      if (cliente) { melhor = 6; melhorScore = 4; } else melhor = FORA_DO_CATALOGO;
     }
     var meses = /(\d+)\s*mes/.exec(n);
     var terminal = null;
@@ -2212,7 +2311,7 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
     var outro = PERFIS.filter(function (p) { return p.carteiras.indexOf(c.carteira) >= 0 && p.id !== ctx.perfil.id; });
     var alvo = outro.filter(function (p) { return p.id === "diretoria"; })[0] || outro[0];
     return {
-      id: ctx.id, selo: qPorId(ctx.id) ? qPorId(ctx.id).selo : "piloto", motor: "consulta", negado: true,
+      id: ctx.id, motor: "consulta", negado: true,
       passos: [{ t: "Lendo o catálogo de perguntas", ms: 340 }, { t: "Verificando o perfil de acesso", ms: 420 },
         { t: "Acesso negado à carteira " + nomeCart, ms: 300, erro: true }],
       texto: [["O perfil ", ctx.perfil.nome, " vê só a própria carteira. ", c.nome, " pertence à carteira ", nomeCart,
@@ -2222,7 +2321,7 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
           h("span", { "class": "bus-negado-ic" }, ic("lock", 22)),
           h("div", { "class": "bus-negado-corpo" },
             h("strong", null, "Acesso negado"),
-            h("p", null, "Cada perfil enxerga apenas a carteira da própria gerência. A regra vem do login corporativo, e não de uma escolha feita na pergunta."),
+            h("p", null, "Cada perfil enxerga apenas a carteira da própria gerência. A regra vem do login corporativo, que define o perfil antes de qualquer pergunta."),
             alvo ? h("button", { type: "button", "class": "bus-btn tonal", onclick: function () { trocarPerfil(alvo.id); responderComo(ctx.texto); } },
               "Ver como " + alvo.nome) : null));
       },
@@ -2234,7 +2333,7 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
   function respEsclarecer(ctx, quem, montarTexto) {
     var q = qPorId(ctx.id);
     return {
-      id: ctx.id, selo: q.selo, motor: q.motor, esclarecer: true,
+      id: ctx.id, motor: q.motor, esclarecer: true,
       passos: [{ t: "Lendo o catálogo de perguntas", ms: 330 }, { t: "Identificando o cliente da pergunta", ms: 380 }],
       texto: [["Preciso saber de qual cliente você fala. Escolha um da " + ctx.perfil.sobre.replace("sobre a ", "").replace("sobre as ", "") + " ou escreva o nome na pergunta."]],
       rico: null, origens: {}, fontes: [], csv: null, origemPrincipal: null,
@@ -2284,7 +2383,7 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
     if (ctx.mes && ctx.mes > 10) paragrafos.push(["Novembro ainda não fechou, e o cálculo usa outubro, o último mês fechado."]);
 
     return {
-      id: 1, selo: "piloto", motor: "consulta",
+      id: 1, motor: "consulta",
       passos: [{ t: "Lendo o catálogo de perguntas", ms: 360 }, { t: "Consultando contratos da carteira", ms: 440 },
         { t: "Lendo os volumes embarcados nos terminais", ms: 440 }, { t: "Calculando a aderência por cliente", ms: 520 }],
       texto: paragrafos,
@@ -2337,7 +2436,7 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
     else p2.push(", e o volume do ano já supera o piso.");
 
     return {
-      id: 2, selo: "piloto", motor: "contrato",
+      id: 2, motor: "contrato",
       passos: [{ t: "Lendo o catálogo de perguntas", ms: 330 }, { t: "Localizando o contrato de longo prazo de " + c.nome, ms: 440 },
         { t: "Lendo a cláusula de volume mínimo", ms: 520 }, { t: "Conferindo o volume anual no contrato simplificado", ms: 400 }],
       texto: [["O contrato ", k.codigo, " de ", c.nome, " fixa o piso de take-or-pay em ", N(k.pisoPct + "%", oPiso), " do volume anual, de ", N(vol(k.volumeAnual), oVolAnual),
@@ -2395,7 +2494,7 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
       csvLinhas = saldos.map(function (sd) { return [sd.nome, mesNome(mes), f1(sd.contratado), f1(sd.embarcado), f1(sd.emTransito), f1(sd.saldo)]; });
     }
     return {
-      id: 3, selo: "piloto", motor: "consulta",
+      id: 3, motor: "consulta",
       passos: [{ t: "Lendo o catálogo de perguntas", ms: 340 }, { t: "Consultando o contrato simplificado do mês", ms: 420 },
         { t: "Lendo o que já embarcou e o que está em trânsito", ms: 480 }, { t: "Calculando o saldo a embarcar", ms: 420 }],
       texto: paragrafos,
@@ -2450,7 +2549,7 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
     });
     var nomesTop = v.maisEspaco.map(function (l) { return l.nome; });
     return {
-      id: 4, selo: "piloto", motor: "consulta",
+      id: 4, motor: "consulta",
       passos: [{ t: "Lendo o catálogo de perguntas", ms: 330 }, { t: "Lendo as vendas das planilhas e dos e-mails", ms: 460 },
         { t: "Consultando o volume planejado por terminal", ms: 430 }, { t: "Calculando o vale a vender", ms: 400 }],
       texto: [["Os vales de dezembro estão ", N(pct(v.pctVendido), oTot), " vendidos: ", N(vol(v.vendido), oVend), " de ", N(vol(v.planejado), oPlan), " planejados, e restam ", N(vol(v.aVender), oAv), " a vender."],
@@ -2503,7 +2602,7 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
     if (maior && maior.diferenca !== 0) paragrafos.push(["O maior desvio é o de ", maior.nome, ", de ", N(sinal(maior.diferenca) + " mil t", oPor[maior.clienteId]), ", com motivo provável: ", minusculaInicial(maior.motivo), "."]);
     if (ctx.mes && ctx.mes > 10) paragrafos.push(["Novembro ainda não fechou, e a conciliação usa outubro, o último mês fechado."]);
     return {
-      id: 5, selo: "piloto", motor: "consulta",
+      id: 5, motor: "consulta",
       passos: [{ t: "Lendo o catálogo de perguntas", ms: 330 }, { t: "Lendo as vendas das planilhas e dos e-mails", ms: 440 },
         { t: "Cruzando com o faturamento no SAP", ms: 520 }, { t: "Comparando vendido e faturado por cliente", ms: 420 }],
       texto: paragrafos,
@@ -2545,7 +2644,7 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
     var oTar = org("Tarifa média de " + c.nome + " em 2026", "R$ " + f1(d.tarifa) + "/t", ["contratos"], sqlDna("tarifa_media", "contratos"), { descricao: "Tarifa média do contrato simplificado de 2026, visível ao dono da carteira e à diretoria." });
     var origemTop = d.origem[0];
     return {
-      id: 6, selo: "piloto", motor: "consulta",
+      id: 6, motor: "consulta",
       passos: [{ t: "Lendo o catálogo de perguntas", ms: 330 }, { t: "Localizando o cadastro de " + c.nome, ms: 400 },
         { t: "Reunindo contratos, volumes e faturamento", ms: 500 }, { t: "Montando a ficha do cliente", ms: 400 }],
       texto: [[c.nome, " embarca ", minusculaInicial(d.produto), " pelo terminal de ", d.terminal, ", com origem principal em ", origemTop.municipio, ". O volume de 2026 até outubro é de ", N(vol(d.volume2026), oVol), ", com aderência de ", N(pct(d.aderencia.pct), oAd), "."],
@@ -2594,7 +2693,7 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
       return h("span", { "class": "bus-chip-estado " + cls }, txt || "Sem situação");
     }
     return {
-      id: 7, selo: "piloto", motor: "consulta",
+      id: 7, motor: "consulta",
       passos: [{ t: "Lendo o catálogo de perguntas", ms: 330 }, { t: "Consultando a vigência dos contratos", ms: 460 }, { t: "Cruzando com a situação da renovação", ms: 440 }],
       texto: paragrafos,
       rico: function () {
@@ -2613,77 +2712,268 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
     };
   }
 
-  // ---- Pergunta 8: fila de caminhões (onda seguinte) ----
-  function q8(ctx) {
-    var terminal = ctx.terminal || "Rondonópolis";
-    var f = calc().fila(terminal);
-    var sqlF = "SELECT caminhoes_na_fila,\n       moegas_ativas,\n       tempo_descarga_min\nFROM base_unica.fila_terminal\nWHERE terminal = '" + terminal + "'\nORDER BY coletado_em DESC\nLIMIT 1;";
-    var oFila = org("Caminhões na fila de " + terminal, String(f.caminhoes), ["capacidade"], sqlF, { descricao: "Última leitura da fila no terminal. Prévia ilustrativa da onda seguinte." });
-    var oEsp = org("Espera estimada em " + terminal, duracaoMin(f.esperaMin), ["capacidade"], sqlF, { descricao: "Caminhões na fila divididos pelas moegas ativas, vezes o tempo médio de descarga." });
-    var oTrem = org("Próximo trem em " + terminal, f.proximoTrem, ["capacidade"], "SELECT MIN(partida)\nFROM base_unica.trens_terminal\nWHERE terminal = '" + terminal + "'\n  AND partida > NOW();", { descricao: "Próxima partida programada de trem a partir do terminal." });
+  // ---- Capacidade: apoio de texto e de origem para as perguntas 8, 11 e 12 ----
+  // Dia da semana com a preposição em, já contraída: "na segunda-feira", "no domingo".
+  var NO_DIA = { seg: "na segunda-feira", ter: "na terça-feira", qua: "na quarta-feira", qui: "na quinta-feira", sex: "na sexta-feira", "sáb": "no sábado", dom: "no domingo" };
+  function diaMes(iso) { return dataBR(iso).slice(0, 5); }
+  function diaRotulo(d) { return d.nome + " " + diaMes(d.dia); }
+  function semanaRotulo(s) { return diaMes(s.ini) + " a " + diaMes(s.fim); }
+  // "hoje", "amanhã" ou a data, para situar a partida de um trem.
+  function quandoTrem(trem) {
+    var amanha = new Date(Date.parse(dados().hoje) + 86400000).toISOString().slice(0, 10);
+    return trem.dia === dados().hoje ? "hoje" : trem.dia === amanha ? "amanhã" : diaMes(trem.dia);
+  }
+
+  function sqlFila(t) {
+    return "SELECT caminhoes_na_fila,\n       moegas_ativas,\n       tempo_descarga_min\nFROM base_unica.fila_terminal\nWHERE terminal = '" + t + "'\nORDER BY coletado_em DESC\nLIMIT 1;";
+  }
+  function sqlEstoque(t, dia) {
+    return "SELECT estoque_mil_t,\n       capacidade_mil_t,\n       estoque_mil_t / capacidade_mil_t AS ocupacao\nFROM base_unica.estoque_armazem\nWHERE terminal = '" + t + "'\n  AND dia = DATE '" + dia + "';";
+  }
+  function sqlPicoEstoque(t) {
+    var semana = dados().semana;
+    return "SELECT MAX(estoque_mil_t / capacidade_mil_t) AS pico\nFROM base_unica.estoque_armazem\nWHERE terminal = '" + t + "'\n  AND dia BETWEEN DATE '" + semana[0] + "' AND DATE '" + semana[semana.length - 1] + "';";
+  }
+  function sqlTrem(t) {
+    return "SELECT partida,\n       vagoes\nFROM base_unica.trens_programacao\nWHERE terminal = '" + t + "'\n  AND destino = 'SANTOS'\n  AND partida > NOW()\nORDER BY partida\nLIMIT 1;";
+  }
+
+  // Todos os números com origem de um terminal: fila, espera, armazém, pico da semana e próximo trem.
+  function origensDoTerminal(terminal) {
+    var f = calc().fila(terminal), a = f.armazem, trem = f.proximoTrem;
     return {
-      id: 8, selo: "onda", motor: "consulta",
-      passos: [{ t: "Lendo o catálogo de perguntas", ms: 330 }, { t: "Consultando a fila do terminal de " + terminal, ms: 460 }, { t: "Lendo a programação de trens", ms: 420 }, { t: "Estimando a espera", ms: 360 }],
-      texto: [["Há ", N(String(f.caminhoes), oFila), " caminhões na fila do terminal de ", terminal, " às ", f.agora, ". Com ", String(f.moegas), " moegas descarregando, a espera estimada é de ", N(duracaoMin(f.esperaMin), oEsp), ". O próximo trem parte às ", N(f.proximoTrem, oTrem), "."],
-        ["A capacidade, que reúne fila no terminal, fluxo da ferrovia, estoque do armazém e porto, entra em uma onda seguinte. Esta resposta é uma prévia com dados ilustrativos."]],
-      rico: function () {
-        return h("div", { "class": "bus-cartao bus-rico-q8" },
-          h("div", { "class": "bus-kpis" }, kpi("Caminhões na fila", String(f.caminhoes), "às " + f.agora, oFila, { final: f.caminhoes, fmt: function (x) { return String(Math.round(x)); } }),
-            kpi("Espera estimada", duracaoMin(f.esperaMin), f.moegas + " moegas ativas", oEsp), kpi("Próximo trem", f.proximoTrem, "partida do terminal", oTrem)),
-          grafico(function (W, animar) { return svgColunas(W, f, animar); }),
-          h("p", { "class": "bus-nota" }, "Fila por hora desde as 6h. Prévia ilustrativa da onda seguinte."));
-      },
-      origens: {}, origemPrincipal: oFila, fontes: ["capacidade"],
-      csv: { nome: "fila-" + terminal.toLowerCase().replace(/\s+/g, "-"), colunas: ["Hora", "Caminhões na fila"], linhas: f.serie.map(function (x, i) { return [pad2(f.horaInicial + i) + "h", String(x)]; }) },
-      continuacoes: [exemplo(9, ctx.perfil), exemplo(4, ctx.perfil)]
+      f: f,
+      fila: org("Caminhões na fila de " + terminal, String(f.caminhoes), ["fila"], sqlFila(terminal), { descricao: "Última leitura da fila no terminal, às " + f.agora + "." }),
+      espera: org("Espera estimada em " + terminal, duracaoMin(f.esperaMin), ["fila"], sqlFila(terminal), { descricao: "Caminhões na fila divididos pelas moegas ativas, vezes o tempo médio de descarga de " + f.descargaMin + " minutos." }),
+      estoque: org("Estoque do armazém de " + terminal, vol(a.hoje.estoque), ["armazem"], sqlEstoque(terminal, dados().hoje), { descricao: "Estoque do armazém do terminal em " + dataBR(dados().hoje) + "." }),
+      ocupacao: org("Ocupação do armazém de " + terminal, pct(a.hoje.pct), ["armazem"], sqlEstoque(terminal, dados().hoje), { descricao: "Estoque de hoje dividido pela capacidade do armazém, de " + vol(a.capacidade) + "." }),
+      pico: org("Pico de ocupação do armazém de " + terminal, pct(a.pico.pct), ["armazem", "ferrovia"], sqlPicoEstoque(terminal), { descricao: "Maior ocupação da semana, entre o estoque realizado e a projeção a partir da programação de trens." }),
+      trem: org("Próximo trem em " + terminal, trem.hora, ["ferrovia"], sqlTrem(terminal), { descricao: "Próxima partida programada de trem com destino a Santos a partir do terminal." }),
+      vagoes: org("Vagões do próximo trem em " + terminal, String(trem.vagoes), ["ferrovia"], sqlTrem(terminal), { descricao: "Vagões previstos na composição do próximo trem com destino a Santos." })
     };
   }
 
-  // ---- Pergunta 9: carteira de X-grãos (onda seguinte) ----
+  // ---- Pergunta 8: fila de caminhões e situação do terminal ----
+  function q8(ctx) {
+    var terminal = ctx.terminal || "Rondonópolis";
+    var o = origensDoTerminal(terminal), f = o.f, a = f.armazem, trem = f.proximoTrem;
+    var todos = dados().terminais.map(function (t) { return origensDoTerminal(t); });
+    var inteiro = function (x) { return String(Math.round(x)); };
+    return {
+      id: 8, motor: "consulta",
+      passos: [{ t: "Lendo o catálogo de perguntas", ms: 330 }, { t: "Consultando a fila do terminal de " + terminal, ms: 460 }, { t: "Lendo o estoque do armazém", ms: 380 },
+        { t: "Lendo a programação de trens para Santos", ms: 420 }, { t: "Estimando a espera", ms: 340 }],
+      texto: [["Há ", N(String(f.caminhoes), o.fila), " caminhões na fila do terminal de ", terminal, " às ", f.agora, ". Com ", String(f.moegas), " moegas descarregando, a espera estimada é de ", N(duracaoMin(f.esperaMin), o.espera), "."],
+        ["O armazém do terminal guarda ", N(vol(a.hoje.estoque), o.estoque), ", que são ", N(pct(a.hoje.pct), o.ocupacao), " da capacidade de ", vol(a.capacidade), ". O próximo trem com destino a Santos parte ",
+          quandoTrem(trem), " às ", N(trem.hora, o.trem), ", com ", N(String(trem.vagoes), o.vagoes), " vagões."]],
+      rico: function () {
+        return h("div", { "class": "bus-cartao bus-rico-q8" },
+          h("div", { "class": "bus-kpis" },
+            kpi("Caminhões na fila", String(f.caminhoes), "às " + f.agora, o.fila, { final: f.caminhoes, fmt: inteiro }),
+            kpi("Espera estimada", duracaoMin(f.esperaMin), f.moegas + " moegas ativas", o.espera),
+            kpi("Estoque do armazém", vol(a.hoje.estoque), pct(a.hoje.pct) + " de " + vol(a.capacidade), o.estoque, { final: a.hoje.estoque, fmt: vol }),
+            kpi("Próximo trem para Santos", trem.hora, trem.vagoes + " vagões, " + quandoTrem(trem), o.trem)),
+          grafico(function (W, animar) { return svgColunas(W, f, animar); }),
+          h("p", { "class": "bus-nota" }, "Fila de caminhões por hora desde as 6h."),
+          h("h4", { "class": "bus-sub" }, "Os três terminais agora"),
+          tabela([{ t: "Terminal" }, { t: "Fila", num: true }, { t: "Espera estimada", num: true }, { t: "Estoque do armazém", num: true }, { t: "Ocupação", num: true }, { t: "Próximo trem" }],
+            todos.map(function (x) {
+              return [x.f.terminal === terminal ? h("strong", null, x.f.terminal) : x.f.terminal, numBtn(String(x.f.caminhoes), x.fila), duracaoMin(x.f.esperaMin),
+                numBtn(f1(x.f.armazem.hoje.estoque), x.estoque), numBtn(pct(x.f.armazem.hoje.pct), x.ocupacao, x.f.armazem.hoje.pct >= x.f.armazem.limiar ? "alerta" : ""),
+                quandoTrem(x.f.proximoTrem) + " às " + x.f.proximoTrem.hora + ", " + x.f.proximoTrem.vagoes + " vagões"];
+            })),
+          h("h4", { "class": "bus-sub" }, "Trens programados para sair de " + terminal),
+          tabela([{ t: "Partida" }, { t: "Destino" }, { t: "Vagões", num: true }],
+            f.trens.map(function (x) { return [quandoTrem(x) + " às " + x.hora, x.destino, String(x.vagoes)]; })),
+          h("p", { "class": "bus-nota" }, "Estoque em mil toneladas. A espera é uma estimativa a partir da fila, das moegas ativas e do tempo médio de descarga."));
+      },
+      origens: {}, origemPrincipal: o.fila, fontes: ["fila", "armazem", "ferrovia"],
+      csv: { nome: "fila-" + terminal.toLowerCase().replace(/\s+/g, "-"), colunas: ["Hora", "Caminhões na fila"], linhas: f.serie.map(function (x, i) { return [pad2(f.horaInicial + i) + "h", String(x)]; }) },
+      continuacoes: [exemplo(11, ctx.perfil), exemplo(12, ctx.perfil)]
+    };
+  }
+
+  // ---- Pergunta 9: carteira de X-grãos ----
   function q9(ctx) {
     if (ctx.perfil.carteiras.indexOf("xgraos") < 0) {
       var primeiroX = calc().clientesDe(["xgraos"])[0];
       var neg = respNegada(ctx, primeiroX.id);
-      neg.id = 9; neg.selo = "onda";
+      neg.id = 9;
       neg.texto = [["O perfil ", ctx.perfil.nome, " vê só a própria carteira. A carteira de X-grãos pertence a outra gerência, e a Bússola não calcula essa resposta para este perfil."]];
       neg.passos[2].t = "Acesso negado à carteira de X-grãos";
       neg.continuacoes = [exemplo(1, ctx.perfil), exemplo(8, ctx.perfil)];
       return neg;
     }
     var r = calc().resumoCarteira("xgraos");
+    var conc = r.conciliacaoOutubro;
     var sqlX = "SELECT cliente_id,\n       SUM(realizado) / SUM(contratado) AS aderencia\nFROM base_unica.volume_mensal\nWHERE carteira = 'X_GRAOS'\n  AND " + intervaloSQL(10) + "\nGROUP BY cliente_id;";
     var oVol = org("Volume anual contratado da carteira de X-grãos", vol(r.volumeAnual), ["contratos"], "SELECT SUM(volume_anual)\nFROM base_unica.contratos\nWHERE carteira = 'X_GRAOS'\n  AND tipo = 'CLP';", { descricao: "Soma do volume anual dos contratos de longo prazo da carteira." });
     var oAd = org("Aderência da carteira de X-grãos", pct(r.aderencia.pct), ["embarques", "contratos"], sqlX, { descricao: "Volume embarcado sobre o contratado de janeiro a outubro." });
     var oVales = org("Vales de dezembro vendidos em X-grãos", pct(r.valesDezembro.pctVendido), ["planilhas", "contratos"], "SELECT SUM(vendido) / SUM(planejado)\nFROM base_unica.vales\nWHERE carteira = 'X_GRAOS'\n  AND mes = '2026-12';", { descricao: "Volume vendido dividido pelo planejado dos vales de dezembro." });
+    var oConc = org("Diferença líquida da carteira de X-grãos em outubro", sinal(conc.totalDiferenca) + " mil t", ["planilhas", "sap"],
+      "SELECT SUM(f.volume - v.volume) AS diferenca\nFROM base_unica.vendas_planilha v\nJOIN base_unica.faturamento_sap f\n  ON f.cliente_id = v.cliente_id AND f.mes = v.mes\nWHERE v.mes = '2026-10'\n  AND v.carteira = 'X_GRAOS';",
+      { descricao: "Volume faturado no SAP menos o volume vendido nas planilhas, em outubro, somado nos clientes da carteira." });
     var oCli = {};
     r.clientes.forEach(function (l) { oCli[l.clienteId] = org("Aderência de " + l.nome, pct(l.pct), ["embarques", "contratos"], sqlAderenciaCliente(l.clienteId, 10), { descricao: "Realizado sobre contratado de janeiro a outubro, comparado com o piso de " + l.pisoPct + "%." }); });
     var abaixo = r.aderencia.abaixo.length;
+    var ordem = r.clientes.slice().sort(function (a, b) { return a.pct - b.pct; });
     return {
-      id: 9, selo: "onda", motor: "consulta",
-      passos: [{ t: "Lendo o catálogo de perguntas", ms: 330 }, { t: "Verificando o perfil de acesso", ms: 380 }, { t: "Consultando contratos da carteira de X-grãos", ms: 440 }, { t: "Calculando aderência e vales", ms: 440 }],
+      id: 9, motor: "consulta",
+      passos: [{ t: "Lendo o catálogo de perguntas", ms: 330 }, { t: "Verificando o perfil de acesso", ms: 380 }, { t: "Consultando contratos da carteira de X-grãos", ms: 440 },
+        { t: "Calculando aderência e vales", ms: 440 }, { t: "Cruzando com o faturamento no SAP", ms: 400 }],
       texto: [["A carteira de X-grãos tem ", String(r.clientes.length), " clientes e ", N(vol(r.volumeAnual), oVol), " de volume anual contratado. A aderência ao take-or-pay até outubro é de ", N(pct(r.aderencia.pct), oAd), ", e ",
         abaixo ? String(abaixo) + (abaixo === 1 ? " cliente está abaixo do piso" : " clientes estão abaixo do piso") : "nenhum cliente está abaixo do piso", "."],
-        ["Os vales de dezembro estão ", N(pct(r.valesDezembro.pctVendido), oVales), " vendidos. Esta carteira entra em uma onda seguinte do piloto."]],
+        ["Os vales de dezembro estão ", N(pct(r.valesDezembro.pctVendido), oVales), " vendidos."],
+        ["Em outubro, o faturado no SAP difere do vendido em ", String(conc.divergentes.length), " dos ", String(conc.linhas.length), " clientes, com diferença líquida de ", N(sinal(conc.totalDiferenca) + " mil t", oConc), "."]],
       rico: function () {
         return h("div", { "class": "bus-cartao bus-rico-q9" },
-          h("div", { "class": "bus-kpis" }, kpi("Aderência", pct(r.aderencia.pct), "janeiro a outubro", oAd, { final: r.aderencia.pct, fmt: pct }), kpi("Volume anual", vol(r.volumeAnual), "contratado", oVol), kpi("Vales de dezembro", pct(r.valesDezembro.pctVendido), "vendidos", oVales)),
+          h("div", { "class": "bus-kpis" }, kpi("Aderência", pct(r.aderencia.pct), "janeiro a outubro", oAd, { final: r.aderencia.pct, fmt: pct }), kpi("Volume anual", vol(r.volumeAnual), "contratado", oVol),
+            kpi("Vales de dezembro", pct(r.valesDezembro.pctVendido), "vendidos", oVales), kpi("Abaixo do piso", String(abaixo), abaixo === 1 ? "cliente" : "clientes", null, { alerta: abaixo > 0 })),
+          grafico(function (W, animar) {
+            return svgBarrasH(W, ordem.map(function (l) { return { id: l.clienteId, nome: l.nome, valor: l.pct, piso: l.pisoPct, alerta: l.abaixoPiso, origem: oCli[l.clienteId], rotuloValor: pct(l.pct) }; }),
+              { max: 120, ref100: true, rotulo: "Aderência ao take-or-pay dos clientes de X-grãos, em porcentagem do contratado" }, animar);
+          }),
+          h("div", { "class": "bus-legenda" }, legenda("bus-sw-real", "Realizado sobre o contratado"), legenda("bus-sw-alerta", "Abaixo do piso"), legenda("bus-sw-piso", "Piso do contrato"), legenda("bus-sw-ref", "100% do contratado")),
+          h("h4", { "class": "bus-sub" }, "Clientes da carteira"),
           tabela([{ t: "Cliente" }, { t: "Produto" }, { t: "Terminal" }, { t: "Volume anual", num: true }, { t: "Aderência", num: true }, { t: "Piso", num: true }],
             r.clientes.map(function (l) {
               var c = calc().cliente(l.clienteId);
               return [l.nome, c.produto, c.terminal, f1(c.volumeAnual), numBtn(pct(l.pct), oCli[l.clienteId], l.abaixoPiso ? "alerta" : ""), l.pisoPct + "%"];
-            })));
+            })),
+          h("p", { "class": "bus-nota" }, "Volumes em mil toneladas. A apuração do take-or-pay é anual, e o cálculo usa outubro, o último mês fechado."));
       },
-      origens: {}, origemPrincipal: oAd, fontes: ["embarques", "contratos", "planilhas"],
+      origens: {}, origemPrincipal: oAd, fontes: ["embarques", "contratos", "planilhas", "sap"],
       csv: { nome: "carteira-x-graos", colunas: ["Cliente", "Produto", "Terminal", "Volume anual (mil t)", "Aderência (%)", "Piso (%)"],
         linhas: r.clientes.map(function (l) { var c = calc().cliente(l.clienteId); return [l.nome, c.produto, c.terminal, f1(c.volumeAnual), f1(l.pct), String(l.pisoPct)]; }) },
       continuacoes: [exemplo(1, ctx.perfil), exemplo(8, ctx.perfil)]
     };
   }
 
+  // ---- Pergunta 11: ocupação do armazém do terminal na semana ----
+  function q11(ctx) {
+    var terminal = ctx.terminal || "Alto Araguaia";
+    var o = origensDoTerminal(terminal), a = o.f.armazem;
+    var todos = dados().terminais.map(function (t) { return origensDoTerminal(t); });
+    var oDia = {};
+    a.dias.forEach(function (d) {
+      oDia[d.dia] = org("Estoque de " + terminal + " em " + diaRotulo(d), vol(d.estoque), ["armazem"], sqlEstoque(terminal, d.dia),
+        { descricao: d.projetado ? "Projeção do planejamento para o dia, a partir da programação de trens." : "Estoque medido no fechamento do dia." });
+    });
+    var acima = a.diasAcimaLimiar;
+    var limiar = a.limiar + "%";
+    var p2 = acima.length ?
+      ["A projeção chega ao pico de ", N(pct(a.pico.pct), o.pico), " ", NO_DIA[a.pico.nome], ", dia ", diaMes(a.pico.dia), ", com ", N(vol(a.pico.estoque), oDia[a.pico.dia]),
+        ", e o armazém fica em ", limiar, " ou mais em ", String(acima.length), acima.length === 1 ? " dia" : " dias", " da semana. Acima desse nível o terminal tem pouca margem para receber novos embarques."] :
+      ["A projeção da semana tem o pico de ", N(pct(a.pico.pct), o.pico), " ", NO_DIA[a.pico.nome], ", dia ", diaMes(a.pico.dia), ", com ", N(vol(a.pico.estoque), oDia[a.pico.dia]),
+        ", abaixo do nível de atenção de ", limiar, "."];
+    return {
+      id: 11, motor: "consulta",
+      passos: [{ t: "Lendo o catálogo de perguntas", ms: 330 }, { t: "Consultando o estoque do armazém de " + terminal, ms: 440 }, { t: "Lendo a programação de trens da semana", ms: 420 },
+        { t: "Calculando a ocupação por dia", ms: 380 }],
+      texto: [["O armazém do terminal de ", terminal, " está com ", N(vol(a.hoje.estoque), o.estoque), " hoje, ", N(pct(a.hoje.pct), o.ocupacao), " da capacidade de ", vol(a.capacidade), "."], p2],
+      rico: function () {
+        return h("div", { "class": "bus-cartao bus-rico-q11" },
+          h("div", { "class": "bus-kpis" },
+            kpi("Estoque hoje", vol(a.hoje.estoque), diaRotulo(a.hoje), o.estoque, { final: a.hoje.estoque, fmt: vol }),
+            kpi("Ocupação hoje", pct(a.hoje.pct), "de " + vol(a.capacidade), o.ocupacao, { final: a.hoje.pct, fmt: pct }),
+            kpi("Pico da semana", pct(a.pico.pct), diaRotulo(a.pico), o.pico, { alerta: a.pico.pct >= a.limiar })),
+          grafico(function (W, animar) { return svgEstoque(W, a, oDia, terminal); }),
+          h("div", { "class": "bus-legenda" }, legenda("bus-sw-real", "Realizado"), legenda("bus-sw-contr", "Projeção"), legenda("bus-sw-alerta", "A partir de " + limiar + " da capacidade"), legenda("bus-sw-ref", "Capacidade do armazém")),
+          h("p", { "class": "bus-nota" }, "Estoque em mil toneladas. Os dias depois de hoje são projeção a partir da programação de trens, e o dia de hoje aparece em destaque."),
+          h("h4", { "class": "bus-sub" }, "Os três terminais"),
+          tabela([{ t: "Terminal" }, { t: "Estoque hoje", num: true }, { t: "Capacidade", num: true }, { t: "Ocupação hoje", num: true }, { t: "Pico da semana", num: true }],
+            todos.map(function (x) {
+              var ar = x.f.armazem;
+              return [x.f.terminal === terminal ? h("strong", null, x.f.terminal) : x.f.terminal, numBtn(f1(ar.hoje.estoque), x.estoque), f1(ar.capacidade),
+                numBtn(pct(ar.hoje.pct), x.ocupacao), numBtn(pct(ar.pico.pct), x.pico, ar.pico.pct >= ar.limiar ? "alerta" : "")];
+            })));
+      },
+      origens: {}, origemPrincipal: o.ocupacao, fontes: ["armazem", "ferrovia"],
+      csv: {
+        nome: "ocupacao-armazem-" + terminal.toLowerCase().replace(/\s+/g, "-"), colunas: ["Dia", "Estoque (mil t)", "Capacidade (mil t)", "Ocupação (%)", "Situação"],
+        linhas: a.dias.map(function (d) { return [dataBR(d.dia), f1(d.estoque), f1(a.capacidade), f1(d.pct), d.projetado ? "Projeção" : "Realizado"]; })
+      },
+      continuacoes: [exemplo(12, ctx.perfil), exemplo(8, ctx.perfil)]
+    };
+  }
+
+  // ---- Pergunta 12: o porto de Santos comporta o volume vendido de dezembro ----
+  function q12(ctx) {
+    var p = calc().porto(ctx.perfil.carteiras);
+    var v = calc().vales(12, ctx.perfil.carteiras);
+    var carteira = carteiraSQL(ctx.perfil).replace("carteira", "v.carteira");
+    var sqlJanela = function (ini) {
+      return "SELECT j.semana_inicio,\n       j.capacidade_descarga AS janela,\n       SUM(v.vendido) AS vendido,\n       j.capacidade_descarga - SUM(v.vendido) AS folga\nFROM base_unica.janela_porto j\nJOIN base_unica.vales v\n  ON v.semana = j.semana_inicio\nWHERE j.porto = 'SANTOS'\n  AND " + carteira + (ini ? "\n  AND j.semana_inicio = DATE '" + ini + "'" : "\n  AND j.semana_inicio BETWEEN DATE '2026-11-30' AND DATE '2026-12-28'") + "\nGROUP BY j.semana_inicio, j.capacidade_descarga;";
+    };
+    var oVend = org("Volume vendido dos vales de dezembro", vol(p.vendido), ["planilhas", "porto"], sqlJanela(null), { descricao: "Soma do volume vendido nos vales de dezembro, repartido pelas semanas de embarque." });
+    var oJan = org("Janela de descarga em Santos em dezembro", vol(p.janela), ["porto"], sqlJanela(null), { descricao: "Soma da capacidade semanal de descarga no porto de Santos reservada à carteira, de 30/11 a 03/01." });
+    var oFolga = org("Folga da janela em dezembro", vol(p.folga), ["planilhas", "porto"], sqlJanela(null), { descricao: "Janela de descarga do mês menos o volume vendido dos vales." });
+    var oAv = org("Volume a vender dos vales de dezembro", vol(v.aVender), ["planilhas", "contratos"], "SELECT SUM(planejado - vendido) AS a_vender\nFROM base_unica.vales\nWHERE " + carteiraSQL(ctx.perfil) + "\n  AND mes = '2026-12';", { descricao: "Volume do contrato de dezembro que ainda não foi vendido." });
+    var oSem = p.semanas.map(function (s) {
+      return org((s.excede ? "Excesso" : "Folga") + " da semana de " + semanaRotulo(s), vol(Math.abs(s.saldo)), ["planilhas", "porto"], sqlJanela(s.ini),
+        { descricao: "Janela de descarga da semana (" + vol(s.janela) + ") menos o volume vendido (" + vol(s.vendido) + ")." });
+    });
+    var apertada = p.semanas.reduce(function (menor, s, i) { return s.saldo < menor.s.saldo ? { s: s, i: i } : menor; }, { s: p.semanas[0], i: 0 });
+    var folgaTexto = apertada.s.excede ? " excede a janela em " : " tem folga de ";
+    var cabem = p.semanas.length - p.semanasExcedidas.length;
+    var paragrafos = [[
+      "A janela de descarga em Santos comporta o volume vendido ", ctx.perfil.da, p.semanasExcedidas.length ? " em " + cabem + " das " + p.semanas.length + " semanas de dezembro" : " nas " + p.semanas.length + " semanas de dezembro",
+      ". O vendido soma ", N(vol(p.vendido), oVend), " para ", N(vol(p.janela), oJan), " de janela no mês, uma folga de ", N(vol(p.folga), oFolga), "."],
+      ["A semana mais apertada é a de ", semanaRotulo(apertada.s), ", com ", vol(apertada.s.vendido), " vendidos para ", vol(apertada.s.janela), " de janela, e", folgaTexto, N(vol(Math.abs(apertada.s.saldo)), oSem[apertada.i]), "."]];
+    if (p.semanasExcedidasPlanejado.length) {
+      var listaSem = p.semanasExcedidasPlanejado.map(function (s) { return semanaRotulo(s); });
+      paragrafos.push(["Os vales ainda têm ", N(vol(v.aVender), oAv), " a vender. Se o restante for vendido na mesma distribuição semanal, ", String(p.semanasExcedidasPlanejado.length),
+        p.semanasExcedidasPlanejado.length === 1 ? " semana passa" : " semanas passam", " da janela: ", juntar(listaSem), "."]);
+    } else {
+      paragrafos.push(["Os vales ainda têm ", N(vol(v.aVender), oAv), " a vender, e nenhuma semana passa da janela mesmo com todo o planejado vendido."]);
+    }
+    if (ctx.mes && ctx.mes !== 12) paragrafos.push(["A janela programada cobre dezembro, e a resposta usa esse mês."]);
+    var maxEscala = Math.max.apply(null, p.semanas.map(function (s) { return Math.max(s.planejado, s.janela); })) * 1.03;
+    return {
+      id: 12, motor: "consulta",
+      passos: [{ t: "Lendo o catálogo de perguntas", ms: 330 }, { t: "Lendo as vendas dos vales de dezembro", ms: 440 }, { t: "Consultando a janela de descarga em Santos", ms: 460 },
+        { t: "Comparando vendido e janela por semana", ms: 420 }],
+      texto: paragrafos,
+      rico: function () {
+        var linhas = p.semanas.map(function (s, i) {
+          return { id: s.ini, nome: semanaRotulo(s), total: s.planejado, marca: s.janela, alerta: s.excede, origem: oSem[i], valores: { ven: s.vendido, av: s.aVender }, janela: s.janela, vendido: s.vendido };
+        });
+        return h("div", { "class": "bus-cartao bus-rico-q12" },
+          h("div", { "class": "bus-kpis" },
+            kpi("Vendido em dezembro", vol(p.vendido), "de " + vol(p.planejado) + " planejados", oVend, { final: p.vendido, fmt: vol }),
+            kpi("Janela em Santos", vol(p.janela), p.semanas.length + " semanas", oJan),
+            kpi(apertada.s.excede ? "Excesso na pior semana" : "Folga na pior semana", vol(Math.abs(apertada.s.saldo)), semanaRotulo(apertada.s), oSem[apertada.i], { alerta: apertada.s.excede })),
+          grafico(function (W, animar) {
+            return svgEmpilhadas(W, linhas, {
+              rotulo: "Volume vendido e a vender dos vales de dezembro contra a janela de descarga em Santos, por semana, em mil toneladas", max: maxEscala,
+              segmentos: [{ chave: "ven", cor: "bus-seg-real", corAlerta: "bus-seg-alerta", rotulo: "Vendido" }, { chave: "av", cor: "bus-seg-contr", rotulo: "A vender" }],
+              totalRotulo: function (l) { return "Vendido " + f1(l.vendido) + " de janela " + f1(l.janela); }
+            }, animar);
+          }),
+          h("div", { "class": "bus-legenda" }, legenda("bus-sw-real", "Vendido"), legenda("bus-sw-contr", "A vender"), legenda("bus-sw-janela", "Janela de descarga")),
+          h("h4", { "class": "bus-sub" }, "Janela de descarga por semana"),
+          tabela([{ t: "Semana" }, { t: "Vendido", num: true }, { t: "Janela", num: true }, { t: "Folga", num: true }, { t: "Com o planejado completo" }],
+            p.semanas.map(function (s, i) {
+              var saldoPlan = arred1Local(s.janela - s.planejado);
+              return [semanaRotulo(s), f1(s.vendido), f1(s.janela), numBtn(sinal(s.saldo), oSem[i], s.excede ? "alerta" : ""),
+                h("span", { "class": "bus-chip-estado " + (s.excedePlanejado ? "alerta" : "ok") }, s.excedePlanejado ? "Excede em " + f1(Math.abs(saldoPlan)) : "Cabe")];
+            })),
+          h("p", { "class": "bus-nota" }, "Volumes em mil toneladas. O cenário com o planejado completo reparte o vale a vender na mesma proporção semanal do vendido. Cada perfil vê a janela da própria carteira."));
+      },
+      origens: {}, origemPrincipal: oFolga, fontes: ["planilhas", "porto", "contratos"],
+      csv: {
+        nome: "porto-santos-dezembro", colunas: ["Semana", "Vendido (mil t)", "A vender (mil t)", "Janela (mil t)", "Folga (mil t)"],
+        linhas: p.semanas.map(function (s) { return [semanaRotulo(s), f1(s.vendido), f1(s.aVender), f1(s.janela), sinal(s.saldo)]; })
+      },
+      continuacoes: [exemplo(4, ctx.perfil), exemplo(11, ctx.perfil)]
+    };
+  }
+  function arred1Local(x) { return Math.round(x * 10) / 10; }
+
   // ---- Pergunta 10: fora do catálogo ----
   function q10(ctx) {
     return {
-      id: 10, selo: null, motor: null, foraCatalogo: true,
+      id: FORA_DO_CATALOGO, motor: null, foraCatalogo: true,
       passos: [{ t: "Lendo o catálogo de perguntas", ms: 340 }, { t: "Procurando uma pergunta equivalente", ms: 460 }, { t: "Nenhuma pergunta equivalente encontrada", ms: 260, erro: true }],
       texto: [["Esta pergunta ainda não está no catálogo."],
         ["Para a Bússola responder, o catálogo precisa de três coisas: a pergunta, escrita como a gerência a faz, as fontes de dados que ela usa na base única e a validação do número com quem calcula hoje."]],
@@ -2701,10 +2991,12 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
     };
   }
 
-  var HANDLERS = { 1: q1, 2: q2, 3: q3, 4: q4, 5: q5, 6: q6, 7: q7, 8: q8, 9: q9, 10: q10 };
+  var HANDLERS = { 1: q1, 2: q2, 3: q3, 4: q4, 5: q5, 6: q6, 7: q7, 8: q8, 9: q9, 10: q10, 11: q11, 12: q12 };
+  // Perguntas que não dependem de um cliente: o nome de cliente na frase não dispara a recusa por carteira.
+  var SEM_CLIENTE = [8, 9, 10, 11, 12];
 
   function calcularResposta(ctx) {
-    if (ctx.cliente && ctx.id !== 8 && ctx.id !== 10 && ctx.id !== 9 && !visivel(ctx.perfil, ctx.cliente)) return respNegada(ctx, ctx.cliente);
+    if (ctx.cliente && SEM_CLIENTE.indexOf(ctx.id) < 0 && !visivel(ctx.perfil, ctx.cliente)) return respNegada(ctx, ctx.cliente);
     return HANDLERS[ctx.id](ctx);
   }
 
@@ -2729,11 +3021,6 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
       h("table", { "class": "bus-tabela" },
         h("thead", null, h("tr", null, colunas.map(function (c) { return h("th", { scope: "col", "class": c.num ? "num" : null }, c.t); }))),
         h("tbody", null, linhas.map(function (l) { return h("tr", null, l.map(function (cel, i) { return h("td", { "class": colunas[i].num ? "num" : null }, cel); })); }))));
-  }
-  function selo(tipo) {
-    if (tipo === "piloto") return h("span", { "class": "bus-selo piloto" }, ic("check", 14), "No piloto");
-    if (tipo === "onda") return h("span", { "class": "bus-selo onda" }, ic("wave", 14), "Onda seguinte");
-    return null;
   }
   function seloMotor(motor) {
     if (motor === "contrato") return h("span", { "class": "bus-selo motor" }, ic("file", 14), "Leitura do contrato");
@@ -2875,10 +3162,21 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
         var v = l.valores[sg.chave];
         var w = Math.max(0, v / o.max * larg);
         if (w <= 0) return;
-        filhos.push(sv("rect", { x: cursor, y: yBarra, width: w, height: barraH, "class": "bus-barra bus-seg " + sg.cor, style: "--i:" + (i + k), rx: 3 }));
-        if (w >= 44) filhos.push(sv("text", { x: cursor + w / 2, y: yBarra + barraH / 2 + 4.5, "text-anchor": "middle", "class": "bus-seg-val " + sg.cor }, f1(v)));
+        // Linha em alerta troca a cor do segmento que declara corAlerta (o vendido que passa da janela do porto).
+        var cor = l.alerta && sg.corAlerta ? sg.corAlerta : sg.cor;
+        filhos.push(sv("rect", { x: cursor, y: yBarra, width: w, height: barraH, "class": "bus-barra bus-seg " + cor, style: "--i:" + (i + k), rx: 3 }));
+        // O valor do segmento sai quando a marca vertical passaria por cima dele.
+        var xRotulo = cursor + w / 2;
+        var marcaSobre = l.marca != null && Math.abs(x0 + l.marca / o.max * larg - xRotulo) < 20;
+        if (w >= 44 && !marcaSobre) filhos.push(sv("text", { x: xRotulo, y: yBarra + barraH / 2 + 4.5, "text-anchor": "middle", "class": "bus-seg-val " + cor }, f1(v)));
         cursor += w;
       });
+      // Marca vertical opcional: a janela de descarga contra a qual a barra é lida.
+      if (l.marca != null) {
+        var xMarca = x0 + l.marca / o.max * larg;
+        filhos.push(sv("line", { x1: xMarca, x2: xMarca, y1: yBarra - 4, y2: yBarra + barraH + 4, "class": "bus-piso-borda" }));
+        filhos.push(sv("line", { x1: xMarca, x2: xMarca, y1: yBarra - 4, y2: yBarra + barraH + 4, "class": "bus-janela-marca" }, sv("title", null, "Janela de descarga: " + f1(l.marca) + " mil t")));
+      }
       filhos.push(sv("text", { x: x0, y: yBarra + barraH + 15, "class": "bus-eixo" }, o.totalRotulo(l) + " mil t"));
       var rotulo = l.nome + ": " + o.segmentos.map(function (sg) { return sg.rotulo + " " + f1(l.valores[sg.chave]); }).join(", ") + (l.origem ? ". Ver de onde vem este número." : "");
       svg.appendChild(linhaClicavel(l.origem, rotulo, filhos, false));
@@ -2906,11 +3204,39 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
     return svg;
   }
 
+  // Estoque diário do armazém na semana: colunas com o valor dentro, linha de capacidade e dias a partir do limiar em alerta.
+  function svgEstoque(W, a, oDia, terminal) {
+    var n = a.dias.length;
+    var H = 196, topo = 30, base = 28, esq = 6;
+    // A coluna é larga o bastante para o valor com uma casa decimal caber dentro dela, mesmo em 390 px.
+    var larg = W - esq * 2, passo = larg / n, colW = Math.min(48, passo * 0.84);
+    var max = Math.max(a.capacidade, Math.max.apply(null, a.dias.map(function (d) { return d.estoque; }))) * 1.08;
+    var yDe = function (v) { return H - base - v / max * (H - topo - base); };
+    var svg = sv("svg", { viewBox: "0 0 " + W + " " + H, width: W, height: H, role: "group", "aria-label": "Estoque diário do armazém de " + terminal + " na semana, contra a capacidade de " + f1(a.capacidade) + " mil toneladas", "class": "bus-svg" });
+    svg.appendChild(sv("line", { x1: esq, x2: W - esq, y1: H - base, y2: H - base, "class": "bus-ref solido" }));
+    svg.appendChild(sv("line", { x1: esq, x2: W - esq, y1: yDe(a.capacidade), y2: yDe(a.capacidade), "class": "bus-ref" }));
+    svg.appendChild(sv("text", { x: W - esq, y: yDe(a.capacidade) - 6, "text-anchor": "end", "class": "bus-eixo" }, "Capacidade " + f1(a.capacidade) + " mil t"));
+    a.dias.forEach(function (d, i) {
+      var cx = esq + passo * i + passo / 2;
+      var y = yDe(d.estoque), altura = H - base - y;
+      var emAlerta = d.pct >= a.limiar;
+      var classe = emAlerta ? "alerta" : (d.projetado ? "contr" : "real");
+      var classeTexto = emAlerta || !d.projetado ? "bus-seg-real" : "bus-seg-contr";
+      var hoje = d.dia === dados().hoje;
+      var filhos = [sv("rect", { x: esq + passo * i + 1, y: 2, width: passo - 2, height: H - 4, rx: 8, "class": "bus-lin-fundo" }),
+        sv("rect", { x: cx - colW / 2, y: y, width: colW, height: altura, rx: 4, "class": "bus-coluna " + classe, style: "--i:" + i }),
+        sv("text", { x: cx, y: y + 17, "text-anchor": "middle", "class": "bus-seg-val " + classeTexto }, f1(d.estoque)),
+        sv("text", { x: cx, y: H - 8, "text-anchor": "middle", "class": "bus-eixo" + (hoje ? " hoje" : "") }, diaRotulo(d).replace(/\/\d+$/, ""))];
+      svg.appendChild(linhaClicavel(oDia[d.dia], diaRotulo(d) + ": " + f1(d.estoque) + " mil t, " + pct(d.pct) + " da capacidade" + (d.projetado ? ", projeção" : "") + ". Ver de onde vem este número.", filhos, hoje));
+    });
+    return svg;
+  }
+
   // =========================================================================
   // Gaveta "De onde vem este número"
   // =========================================================================
   function sqlHtml(sql) {
-    var palavras = "SELECT|FROM|WHERE|AND|JOIN|ON|GROUP BY|ORDER BY|BETWEEN|AS|SUM|MIN|COUNT|IN|LIMIT|DESC|DATE|INTERVAL|NOW";
+    var palavras = "SELECT|FROM|WHERE|AND|JOIN|ON|GROUP BY|ORDER BY|BETWEEN|AS|SUM|MIN|MAX|COUNT|IN|LIMIT|DESC|DATE|INTERVAL|NOW";
     var re = new RegExp("('[^']*')|\\b(" + palavras + ")\\b", "g");
     var seguro = sql.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
     return seguro.replace(re, function (m, texto, palavra) { return texto ? '<span class="s">' + texto + "</span>" : '<span class="k">' + palavra + "</span>"; });
@@ -3159,7 +3485,6 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
       return { erro: true, msg: msg };
     }
 
-    if (resp.selo) seloLinha.appendChild(selo(resp.selo));
     if (resp.motor) seloLinha.appendChild(seloMotor(resp.motor));
     if (resp.foraCatalogo) seloLinha.appendChild(h("span", { "class": "bus-selo neutro" }, ic("info", 14), "Fora do catálogo"));
     var tx = montarParagrafos(resp.texto);
@@ -3268,24 +3593,24 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
 
   function renderSugestoes() {
     var p = estado.perfil;
-    var ids = [1, 2, 3, 4, 5, 6];
+    var ids = [1, 4, 6, 8, 11, 12];
     estado.el.sugestoes.replaceChildren.apply(estado.el.sugestoes, ids.map(function (id) {
       var q = qPorId(id);
       return h("button", { type: "button", "class": "bus-sugestao", onclick: function () { window.BUS.perguntar(exemplo(id, p)); } },
-        h("span", { "class": "bus-sugestao-txt" }, exemplo(id, p)), selo(q.selo));
+        h("span", { "class": "bus-sugestao-txt" }, exemplo(id, p)), h("span", { "class": "bus-sugestao-tema" }, q.tema));
     }));
   }
 
+  // A lateral agrupa as perguntas por tema, na ordem de TEMAS.
   function renderLateral() {
     var p = estado.perfil;
-    var grupos = [["piloto", "No piloto"], ["onda", "Onda seguinte"]];
     var lista = estado.el.listaPerguntas;
     lista.replaceChildren();
-    grupos.forEach(function (g) {
-      lista.appendChild(h("h3", { "class": "bus-lat-grupo" }, g[1]));
-      lista.appendChild(h("ul", { "class": "bus-lat-lista" }, QS.filter(function (q) { return q.selo === g[0]; }).map(function (q) {
+    TEMAS.forEach(function (tema) {
+      lista.appendChild(h("h3", { "class": "bus-lat-grupo" }, tema));
+      lista.appendChild(h("ul", { "class": "bus-lat-lista" }, QS.filter(function (q) { return q.tema === tema; }).map(function (q) {
         return h("li", null, h("button", { type: "button", "class": "bus-lat-item", "data-q": q.id, onclick: function () { fecharMenuLateral(); window.BUS.perguntar(exemplo(q.id, p)); } },
-          h("span", { "class": "bus-lat-txt" }, q.curto), selo(q.selo)));
+          h("span", { "class": "bus-lat-txt" }, q.curto)));
       })));
     });
   }
@@ -3302,9 +3627,7 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
   function gravarArmazenado(chave, valor) { try { localStorage.setItem(chave, JSON.stringify(valor)); } catch (e) { /* armazenamento indisponível */ } }
   function novoId() { return "q" + Date.now().toString(36) + Math.floor(Math.random() * 1e6).toString(36); }
 
-  function formVazio() { return { pergunta: "", quem: estado ? estado.perfil.nome : "", freq: "Sob demanda", fontes: [], selo: "piloto", seloManual: false }; }
-
-  function seloSugerido(fontes) { return fontes.indexOf("Capacidade e operação") >= 0 ? "onda" : "piloto"; }
+  function formVazio() { return { pergunta: "", quem: estado ? estado.perfil.nome : "", freq: "Sob demanda", fontes: [] }; }
 
   function salvarCatalogo() { gravarArmazenado("bus-catalogo", estado.cat.itens); }
   function salvarRascunho() { gravarArmazenado("bus-rascunho", estado.cat.form); }
@@ -3327,8 +3650,6 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
     c.quem.value = f.quem;
     c.formEl.querySelectorAll("[name=freq]").forEach(function (r) { r.checked = r.value === f.freq; });
     c.formEl.querySelectorAll("[name=fonte]").forEach(function (r) { r.checked = f.fontes.indexOf(r.value) >= 0; });
-    c.formEl.querySelectorAll("[name=selo]").forEach(function (r) { r.checked = r.value === f.selo; });
-    c.dicaSelo.textContent = f.seloManual ? "Selo escolhido por você." : "Selo sugerido a partir das fontes. Você pode trocar.";
     var editando = !!estado.cat.edicao;
     c.enviar.firstChild.nextSibling.textContent = editando ? "Salvar alterações" : "Adicionar à lista";
     c.cancelar.hidden = !editando;
@@ -3350,7 +3671,7 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
     if (!texto) { c.erro.textContent = "Escreva a pergunta antes de adicionar."; c.pergunta.focus(); return; }
     var igual = estado.cat.itens.filter(function (i) { return norm(i.pergunta) === norm(texto) && i.id !== estado.cat.edicao; })[0];
     if (igual) { c.erro.textContent = "Esta pergunta já está no catálogo."; c.pergunta.focus(); return; }
-    var item = { id: estado.cat.edicao || novoId(), pergunta: texto, quem: f.quem.trim(), freq: f.freq, fontes: f.fontes.slice(), selo: f.selo };
+    var item = { id: estado.cat.edicao || novoId(), pergunta: texto, quem: f.quem.trim(), freq: f.freq, fontes: f.fontes.slice() };
     if (estado.cat.edicao) {
       estado.cat.itens = estado.cat.itens.map(function (i) { return i.id === estado.cat.edicao ? item : i; });
       avisar("Pergunta atualizada");
@@ -3388,21 +3709,21 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
     var item = estado.cat.itens.filter(function (x) { return x.id === id; })[0];
     if (!item) return;
     estado.cat.edicao = id;
-    estado.cat.form = { pergunta: item.pergunta, quem: item.quem, freq: item.freq, fontes: item.fontes.slice(), selo: item.selo, seloManual: true };
+    estado.cat.form = { pergunta: item.pergunta, quem: item.quem, freq: item.freq, fontes: item.fontes.slice() };
     renderFormulario();
     estado.el.cat.pergunta.focus();
   }
 
   function nomeFreq(f) { return f; }
   function csvCatalogo() {
-    return { colunas: ["Nº", "Pergunta", "Quem pergunta", "Frequência", "Fontes necessárias", "Situação"],
-      linhas: estado.cat.itens.map(function (i, n) { return [String(n + 1), i.pergunta, i.quem, i.freq, i.fontes.join(", "), SELO_NOME[i.selo]]; }) };
+    return { colunas: ["Nº", "Pergunta", "Quem pergunta", "Frequência", "Fontes necessárias"],
+      linhas: estado.cat.itens.map(function (i, n) { return [String(n + 1), i.pergunta, i.quem, i.freq, i.fontes.join(", ")]; }) };
   }
   function textoAta() {
     var linhas = ["Catálogo de perguntas da Bússola Comercial, rascunho da reunião de " + dataBR(dados().hoje) + ":", ""];
     estado.cat.itens.forEach(function (i, n) {
       linhas.push((n + 1) + ". " + i.pergunta);
-      linhas.push("   Quem pergunta: " + (i.quem || "não informado") + ". Frequência: " + i.freq.toLowerCase() + ". Fontes: " + (i.fontes.length ? i.fontes.join(", ") : "a definir") + ". Situação: " + SELO_NOME[i.selo] + ".");
+      linhas.push("   Quem pergunta: " + (i.quem || "não informado") + ". Frequência: " + i.freq.toLowerCase() + ". Fontes: " + (i.fontes.length ? i.fontes.join(", ") : "a definir") + ".");
     });
     return linhas.join("\n");
   }
@@ -3428,7 +3749,7 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
           h("p", { "class": "bus-cat-pergunta" }, item.pergunta),
           h("p", { "class": "bus-cat-meta" }, (item.quem || "Quem pergunta não informado") + " | " + nomeFreq(item.freq)),
           h("div", { "class": "bus-chips" }, fontes)),
-        h("div", { "class": "bus-cat-lado" }, selo(item.selo),
+        h("div", { "class": "bus-cat-lado" },
           h("div", { "class": "bus-cat-botoes" },
             icBtn("chevronUp", "Subir a pergunta " + (i + 1), item.id, "subir", i === 0, function () { mover(item.id, -1); }),
             icBtn("chevronDown", "Descer a pergunta " + (i + 1), item.id, "descer", i === n - 1, function () { mover(item.id, 1); }),
@@ -3446,7 +3767,6 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
     c.pergunta = h("textarea", { id: "bus-f-pergunta", rows: "2", "class": "bus-campo-txt", placeholder: "Escreva a pergunta como a gerência a faz", autocomplete: "off" });
     c.quem = h("input", { id: "bus-f-quem", type: "text", "class": "bus-campo-txt", placeholder: "Cargo de quem pergunta", autocomplete: "off" });
     c.erro = h("p", { "class": "bus-erro-campo", role: "alert" });
-    c.dicaSelo = h("p", { "class": "bus-dica" });
     c.enviar = h("button", { type: "submit", "class": "bus-btn primario" }, ic("plus", 16), h("span", null, "Adicionar à lista"));
     c.cancelar = h("button", { type: "button", "class": "bus-btn secundario", hidden: true, onclick: function () { estado.cat.edicao = null; estado.cat.form = formVazio(); renderFormulario(); renderCatalogo(); } }, "Cancelar edição");
     var radios = function (nome, valores, tipo, rotuloDe) {
@@ -3461,18 +3781,13 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
       h("div", { "class": "bus-campo" }, h("label", { "for": "bus-f-quem" }, "Quem pergunta"), c.quem),
       h("fieldset", { "class": "bus-campo" }, h("legend", null, "Frequência"), radios("freq", FREQS, "radio")),
       h("fieldset", { "class": "bus-campo" }, h("legend", null, "Fontes necessárias"), radios("fonte", FONTES_CAT, "checkbox")),
-      h("fieldset", { "class": "bus-campo" }, h("legend", null, "Situação no piloto"), radios("selo", ["piloto", "onda"], "radio", function (v) { return SELO_NOME[v]; }), c.dicaSelo),
       c.erro, h("div", { "class": "bus-form-botoes" }, c.enviar, c.cancelar));
     c.formEl.addEventListener("submit", function (e) { e.preventDefault(); enviarFormulario(); });
     c.pergunta.addEventListener("keydown", function (e) {
       if (e.key === "Enter" && !e.shiftKey && !e.isComposing) { e.preventDefault(); enviarFormulario(); }
     });
     c.formEl.addEventListener("input", function (e) {
-      var f = lerFormulario();
-      if (e.target.name === "selo") { f.selo = e.target.value; f.seloManual = true; }
-      else if (e.target.name === "fonte" && !f.seloManual) { f.selo = seloSugerido(f.fontes); }
-      c.formEl.querySelectorAll("[name=selo]").forEach(function (r) { r.checked = r.value === f.selo; });
-      c.dicaSelo.textContent = f.seloManual ? "Selo escolhido por você." : "Selo sugerido a partir das fontes. Você pode trocar.";
+      lerFormulario();
       c.erro.textContent = "";
       salvarRascunho();
     });
@@ -3497,9 +3812,9 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
     c.vazio = h("div", { "class": "bus-vazio-cat" },
       h("span", { "class": "bus-vazio-ic" }, ic("clipboard", 26)),
       h("h3", null, "O catálogo está vazio"),
-      h("p", null, "Digite a primeira pergunta que a Rumo quer fazer à Bússola, informe quem pergunta e marque as fontes. O selo é sugerido sozinho, e a lista fica salva neste navegador."),
+      h("p", null, "Digite a primeira pergunta que a Rumo quer fazer à Bússola, informe quem pergunta e marque as fontes. A lista fica salva neste navegador."),
       h("button", { type: "button", "class": "bus-btn tonal", onclick: function () {
-        QS.forEach(function (q) { estado.cat.itens.push({ id: novoId(), pergunta: exemplo(q.id, estado.perfil), quem: PERFIS[0].nome, freq: "Sob demanda", fontes: [], selo: q.selo }); });
+        QS.forEach(function (q) { estado.cat.itens.push({ id: novoId(), pergunta: exemplo(q.id, estado.perfil), quem: PERFIS[0].nome, freq: "Sob demanda", fontes: [] }); });
         salvarCatalogo(); renderCatalogo(); avisar("Perguntas do protótipo adicionadas");
       } }, "Partir das perguntas do protótipo"));
 
@@ -3559,7 +3874,7 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
   // =========================================================================
   function comandosPaleta() {
     var p = estado.perfil, lista = [];
-    QS.forEach(function (q) { lista.push({ grupo: "Perguntas", rotulo: q.curto, dica: SELO_NOME[q.selo], chave: norm(q.curto + " " + exemplo(q.id, p)), fn: function () { window.BUS.perguntar(exemplo(q.id, p)); } }); });
+    QS.forEach(function (q) { lista.push({ grupo: "Perguntas", rotulo: q.curto, dica: q.tema, chave: norm(q.curto + " " + exemplo(q.id, p)), fn: function () { window.BUS.perguntar(exemplo(q.id, p)); } }); });
     dados().clientes.forEach(function (c) { lista.push({ grupo: "Clientes", rotulo: c.nome, dica: "Abrir o DNA", chave: norm(c.nome + " dna ficha cliente"), fn: function () { window.BUS.perguntar("Me mostra o DNA da " + c.nome); } }); });
     lista.push({ grupo: "Ações", rotulo: "Nova conversa", dica: "", chave: "nova conversa limpar", fn: novaConversa });
     lista.push({ grupo: "Ações", rotulo: "Alternar tema claro e escuro", dica: "", chave: "tema claro escuro modo", fn: alternarTema });
@@ -3648,7 +3963,8 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
     { rotulo: "Saldo do mês de um cliente", id: 3 },
     { rotulo: "Faturado no SAP contra vendido", id: 5 },
     { rotulo: "DNA do cliente", id: 6 },
-    { rotulo: "Fila de caminhões, onda seguinte", id: 8 },
+    { rotulo: "Fila de caminhões e situação do terminal", id: 8 },
+    { rotulo: "Porto de Santos em dezembro", id: 12 },
     { rotulo: "Acesso por perfil", id: 9, perfil: true },
     { rotulo: "Catálogo ao vivo", catalogo: true }
   ];
@@ -3897,7 +4213,7 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
       h("div", { "class": "bus-vazio" },
         h("span", { "class": "bus-vazio-av" }, avatar(false)),
         el.saudacao,
-        h("p", { "class": "bus-vazio-linha" }, "A Bússola responde sobre take-or-pay, saldo do mês, vales, conciliação com o SAP, DNA do cliente e vencimento de contratos, e mostra de onde vem cada número."),
+        h("p", { "class": "bus-vazio-linha" }, "A Bússola responde sobre take-or-pay, saldo do mês, vales, conciliação com o SAP, DNA do cliente, vencimento de contratos e a capacidade do terminal ao porto, e mostra de onde vem cada número."),
         el.sugestoes),
       el.msgs);
     el.campo = h("textarea", { "class": "bus-campo-pergunta", rows: "1", placeholder: "Pergunte sobre a carteira", "aria-label": "Pergunta para a Bússola", autocomplete: "off" });
@@ -3985,7 +4301,7 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
 <script>
 /* Bússola Comercial - Rumo: script da página de apresentação.
  *
- * Cuida do tema, do cabeçalho, das revelações, da capa animada (canvas), do diagrama do piloto,
+ * Cuida do tema, do cabeçalho, das revelações, da capa animada (canvas), do diagrama do projeto,
  * do exemplo de origem de um número, do seletor de ambiente e da ligação com o app da Bússola.
  * O app em si (window.BUS) e os dados (window.BUS_DADOS) vêm de outros arquivos e podem não existir
  * numa montagem parcial: tudo aqui trata a ausência deles.
@@ -4422,63 +4738,61 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
   }
 
   /* ======================================================================
-     Piloto: diagrama SVG interativo
+     Projeto: diagrama SVG interativo
      ====================================================================== */
   const NOS = {
     sap: {
-      titulo: ["Faturamento", "no SAP"], icone: "db", selo: "piloto",
+      titulo: ["Faturamento", "no SAP"], icone: "db",
       recebe: "Notas fiscais e volumes faturados, extraídos da área de faturamento.",
       entrega: "O volume faturado por cliente e por mês, para conciliar com o vendido.",
     },
     contratos: {
-      titulo: ["Contratos de longo prazo", "e simplificados"], icone: "arquivo", selo: "piloto",
+      titulo: ["Contratos de longo prazo", "e simplificados"], icone: "arquivo",
       recebe: "Contratos de longo prazo e contratos simplificados anuais, com cláusulas e vigência.",
       entrega: "Volume contratado, piso de take-or-pay e vencimentos, com a cláusula de origem.",
     },
     vales: {
-      titulo: ["Planilhas e e-mails", "da venda dos vales"], icone: "planilha", selo: "piloto",
+      titulo: ["Planilhas e e-mails", "da venda dos vales"], icone: "planilha",
       recebe: "As planilhas e os e-mails em que a gerência registra o volume vendido dos vales.",
       entrega: "O volume vendido por terminal de origem e por mês, numa tabela só.",
     },
     cadastro: {
-      titulo: ["Cadastro e DNA", "do cliente"], icone: "usuario", selo: "piloto",
+      titulo: ["Cadastro e DNA", "do cliente"], icone: "usuario",
       recebe: "Cadastro do cliente, município de origem da carga e terminal de embarque.",
       entrega: "A ficha do cliente, com contratos, volume, aderência e saldo.",
     },
+    capacidade: {
+      titulo: ["Capacidade"], icone: "trem",
+      sub: ["Terminal, ferrovia, armazém e porto"],
+      recebe: "Fila de caminhões no terminal, fluxo da ferrovia, estoque do armazém e janela de descarga no porto de Santos.",
+      entrega: "A ocupação do terminal e do porto, para responder perguntas de capacidade na mesma Bússola.",
+    },
     base: {
-      titulo: ["Base única", "do cliente"], compacto: ["Base única do cliente"], icone: "db", selo: "piloto",
-      sub: ["Cadastro, contratos,", "volumes e faturamento", "conciliados"], subCompacto: ["Cadastro, contratos, volumes", "e faturamento conciliados"],
-      recebe: "As quatro fontes do piloto, conciliadas com o que a gerência calcula hoje.",
+      titulo: ["Base única", "do cliente"], compacto: ["Base única do cliente"], icone: "db",
+      sub: ["Cadastro, contratos,", "volumes, faturamento", "e capacidade"], subCompacto: ["Cadastro, contratos, volumes,", "faturamento e capacidade"],
+      pilula: "Grãos e farelo e X-grãos",
+      recebe: "As cinco fontes, para as duas carteiras, conciliadas com o que a gerência calcula hoje.",
       entrega: "Uma referência por cliente, contrato e mês, com a origem de cada campo.",
     },
     bussola: {
-      titulo: ["Bússola"], icone: "marca", selo: "piloto",
+      titulo: ["Bússola"], icone: "marca",
       sub: ["Teams ou web,", "catálogo de perguntas e", "origem de cada número"], subCompacto: ["Teams ou web, catálogo de", "perguntas e origem de cada número"],
       recebe: "As perguntas do catálogo fechado com a diretoria, feitas no Teams ou na web.",
       entrega: "A resposta com o número, a fonte, a área dona da informação e a data da extração.",
     },
-    segunda: {
-      titulo: ["Segunda", "carteira"], compacto: ["Segunda carteira"], icone: "usuario", selo: "onda",
-      recebe: "Os mesmos quatro tipos de fonte, vindos de outro grupo de clientes.",
-      entrega: "A base única passa a cobrir mais uma carteira.",
-    },
-    capacidade: {
-      titulo: ["Capacidade"], icone: "trem", selo: "onda",
-      sub: ["Fila no terminal, ferrovia,", "armazém e porto"], subCompacto: [],
-      recebe: "Fila de caminhões no terminal, fluxo da ferrovia, estoque do armazém e movimentação do porto.",
-      entrega: "Perguntas de capacidade respondidas na mesma Bússola.",
-    },
   };
   const ARESTAS = [
-    { de: "sap", para: "base" }, { de: "contratos", para: "base" }, { de: "vales", para: "base" }, { de: "cadastro", para: "base" },
+    { de: "sap", para: "base" }, { de: "contratos", para: "base" }, { de: "vales", para: "base" },
+    { de: "cadastro", para: "base" }, { de: "capacidade", para: "base" },
     { de: "base", para: "bussola" },
-    { de: "segunda", para: "base", onda: true }, { de: "capacidade", para: "base", onda: true },
-  ];
-  const ORDEM_DO_FLUXO = [
-    { aresta: 0, inicio: 0 }, { aresta: 1, inicio: 260 }, { aresta: 2, inicio: 520 }, { aresta: 3, inicio: 780 },
-    { aresta: 4, inicio: 1700 },
   ];
   const DURACAO_DO_PULSO = 900;
+  const INTERVALO_ENTRE_FONTES = 200;
+  // As fontes saem escalonadas; o pulso da base para a Bússola começa quando o último das fontes termina
+  const ORDEM_DO_FLUXO = ARESTAS.map((aresta, indice) => {
+    const ultimaFonte = ARESTAS.length - 2;
+    return { aresta: indice, inicio: indice <= ultimaFonte ? indice * INTERVALO_ENTRE_FONTES : ultimaFonte * INTERVALO_ENTRE_FONTES + DURACAO_DO_PULSO + 20 };
+  });
 
   // Os três últimos caminhos do logo: o "o" com seta, usado como marca da Bússola
   const MARCA_O = [
@@ -4487,92 +4801,73 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
     "M112.813 19.1024C111.15 23.1706 106.369 26.9324 100.43 26.9324C94.1115 26.9324 89.9313 22.6707 89.9313 17.4199C89.9329 16.1601 90.2278 14.918 90.7931 13.7921L95.157 14.7617C95.7785 19.3501 100.474 22.7834 105.139 22.7834C106.599 22.7133 108.031 22.3515 109.349 21.7193C110.667 21.087 111.844 20.1972 112.813 19.1024Z",
   ];
 
-  function larguraDoSelo(tipo) { return tipo === "piloto" ? 84 : 110; }
+  const FONTES = ["sap", "contratos", "vales", "cadastro", "capacidade"];
 
   // Posição e tamanho de cada nó, nas duas versões: horizontal (computador) e vertical (celular)
   function calcularLayout(compacto) {
     const nos = {};
     let caixa;
     if (!compacto) {
-      // Versão baixa: o diagrama inteiro, com as ondas seguintes, cabe numa tela de 1280x720
       const altFonte = 64, vao = 10;
-      ["sap", "contratos", "vales", "cadastro"].forEach((id, i) => { nos[id] = { x: 0, y: i * (altFonte + vao), w: 330, h: altFonte }; });
-      const fundoFontes = 4 * altFonte + 3 * vao;
+      FONTES.forEach((id, i) => { nos[id] = { x: 0, y: i * (altFonte + vao), w: 330, h: altFonte }; });
+      const fundoFontes = FONTES.length * altFonte + (FONTES.length - 1) * vao;
       const centro = fundoFontes / 2;
       nos.base = { x: 430, y: centro - 84, w: 240, h: 168 };
-      nos.bussola = { x: 790, y: centro - 85, w: 310, h: 170 };
-      nos.segunda = { x: 300, y: fundoFontes + 34, w: 250, h: 88 };
-      nos.capacidade = { x: 590, y: fundoFontes + 34, w: 320, h: 88 };
-      caixa = { x: 0, y: 0, w: 1100, h: fundoFontes + 34 + 88 + 4 };
+      nos.bussola = { x: 790, y: centro - 84, w: 310, h: 168 };
+      caixa = { x: 0, y: 0, w: 1100, h: fundoFontes };
     } else {
-      const altFonte = 88, vao = 10;
-      ["sap", "contratos", "vales", "cadastro"].forEach((id, i) => { nos[id] = { x: 0, y: i * (altFonte + vao), w: 330, h: altFonte }; });
-      const fundoFontes = 4 * altFonte + 3 * vao;
+      const altFonte = 76, vao = 10;
+      FONTES.forEach((id, i) => { nos[id] = { x: 0, y: i * (altFonte + vao), w: 330, h: altFonte }; });
+      const fundoFontes = FONTES.length * altFonte + (FONTES.length - 1) * vao;
       nos.base = { x: 0, y: fundoFontes + 40, w: 330, h: 112 };
       nos.bussola = { x: 0, y: fundoFontes + 40 + 112 + 40, w: 330, h: 112 };
-      const yOndas = fundoFontes + 40 + 112 + 40 + 112 + 44;
-      nos.segunda = { x: 0, y: yOndas, w: 170, h: 78 };
-      nos.capacidade = { x: 190, y: yOndas, w: 170, h: 78 };
-      caixa = { x: -22, y: 0, w: 396, h: yOndas + 78 + 6 };
+      caixa = { x: 0, y: 0, w: 362, h: fundoFontes + 40 + 112 + 40 + 112 };
     }
 
     const arestas = ARESTAS.map((aresta, indice) => {
       const a = nos[aresta.de], b = nos[aresta.para];
       let d;
       if (!compacto) {
-        if (aresta.onda) {
-          const destinoX = b.x + b.w * (aresta.de === "segunda" ? 0.3 : 0.7);
-          const origemX = a.x + a.w / 2;
-          d = "M" + origemX + "," + a.y + " C" + origemX + "," + (a.y - 36) + " " + destinoX + "," + (b.y + b.h + 36) + " " + destinoX + "," + (b.y + b.h);
-        } else if (aresta.de === "base") {
+        if (aresta.de === "base") {
           d = "M" + (a.x + a.w) + "," + (a.y + a.h / 2) + " L" + b.x + "," + (b.y + b.h / 2);
         } else {
           const y1 = a.y + a.h / 2, y2 = b.y + b.h / 2, x1 = a.x + a.w, x2 = b.x;
           d = "M" + x1 + "," + y1 + " C" + (x1 + 70) + "," + y1 + " " + (x2 - 70) + "," + y2 + " " + x2 + "," + y2;
         }
-      } else if (aresta.onda) {
-        const alturaDegrau = aresta.de === "segunda" ? 18 : 30;
-        const trilhoX = aresta.de === "segunda" ? -8 : -16;
-        const origemX = a.x + a.w / 2;
-        d = "M" + origemX + "," + a.y + " V" + (a.y - alturaDegrau) + " H" + trilhoX + " V" + (b.y + b.h / 2) + " H" + b.x;
       } else if (aresta.de === "base") {
         d = "M" + (a.x + a.w / 2) + "," + (a.y + a.h) + " V" + b.y;
       } else {
         const y1 = a.y + a.h / 2;
         d = "M" + (a.x + a.w) + "," + y1 + " H" + (a.x + a.w + 16) + " V" + (b.y + b.h / 2) + " H" + (b.x + b.w);
       }
-      return { de: aresta.de, para: aresta.para, onda: !!aresta.onda, d: d, indice: indice };
+      return { de: aresta.de, para: aresta.para, d: d, indice: indice };
     });
     return { nos: nos, arestas: arestas, caixa: caixa };
   }
 
-  function desenharSelo(grupo, tipo, x, y) {
-    const w = larguraDoSelo(tipo);
-    const selo = elSvg("g", { transform: "translate(" + x + " " + y + ")" });
-    selo.appendChild(elSvg("rect", { width: w, height: 22, rx: 11 }, "dg-selo-fundo-" + tipo));
-    const marca = elSvg("use", { x: 8, y: 5, width: 12, height: 12 }, "dg-selo-icone dg-selo-icone-" + tipo);
-    marca.setAttribute("href", tipo === "piloto" ? "#i-check" : "#i-arco");
-    selo.appendChild(marca);
-    const texto = elSvg("text", { x: 25, y: 15.5 }, "dg-selo-txt-" + tipo);
-    texto.textContent = tipo === "piloto" ? "No piloto" : "Onda seguinte";
-    selo.appendChild(texto);
-    grupo.appendChild(selo);
+  // Pílula com as carteiras que a base atende; informa o conteúdo do nó e não o escopo
+  function desenharPilula(grupo, rotulo, x, y, largura) {
+    const pilula = elSvg("g", { transform: "translate(" + x + " " + y + ")" });
+    pilula.appendChild(elSvg("rect", { width: largura, height: 22, rx: 11 }, "dg-pilula-fundo"));
+    const texto = elSvg("text", { x: largura / 2, y: 15.5 }, "dg-pilula-txt");
+    texto.textContent = rotulo;
+    pilula.appendChild(texto);
+    grupo.appendChild(pilula);
   }
-
-  function linhasTituloQuantidade(id) { return NOS[id].titulo.length; }
 
   function desenharNo(id, caixa, compacto) {
     const def = NOS[id];
     const grande = id === "base" || id === "bussola";
+    const linhasTitulo = compacto && def.compacto ? def.compacto : def.titulo;
     const grupo = elSvg("g", { tabindex: "0", role: "button", "aria-pressed": "false", "data-id": id,
-      "aria-label": (def.compacto && compacto ? def.compacto : def.titulo).join(" ") + ", " + (def.selo === "piloto" ? "no piloto" : "onda seguinte") + ". Mostrar o que recebe e o que entrega." },
-      "dg-no" + (def.selo === "onda" ? " onda" : ""));
+      "aria-label": linhasTitulo.join(" ") + ". Mostrar o que recebe e o que entrega." }, "dg-no");
     grupo.appendChild(elSvg("rect", { x: caixa.x, y: caixa.y, width: caixa.w, height: caixa.h, rx: 16 }, "dg-caixa"));
     grupo.appendChild(elSvg("rect", { x: caixa.x - 5, y: caixa.y - 5, width: caixa.w + 10, height: caixa.h + 10, rx: 20 }, "dg-foco"));
 
-    const raioIcone = compacto && (id === "segunda" || id === "capacidade") ? 16 : 20;
+    // Fontes na versão larga são baixas: o ícone e o texto ficam centrados na altura do nó
+    const baixo = !compacto && !grande;
+    const raioIcone = 20;
     const centroIconeX = caixa.x + raioIcone + 14;
-    const baixo = !compacto && caixa.h < 100;
     const centroIconeY = caixa.y + (baixo ? caixa.h / 2 : 36);
     grupo.appendChild(elSvg("circle", { cx: centroIconeX, cy: centroIconeY, r: raioIcone }, "dg-icone-fundo"));
     if (def.icone === "marca") {
@@ -4580,23 +4875,27 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
       MARCA_O.forEach((d) => marca.appendChild(elSvg("path", { d: d }, "dg-marca")));
       grupo.appendChild(marca);
     } else {
-      const tamanho = raioIcone === 16 ? 18 : 22;
-      const uso = elSvg("use", { x: centroIconeX - tamanho / 2, y: centroIconeY - tamanho / 2, width: tamanho, height: tamanho }, "dg-icone");
+      const uso = elSvg("use", { x: centroIconeX - 11, y: centroIconeY - 11, width: 22, height: 22 }, "dg-icone");
       uso.setAttribute("href", "#i-" + def.icone);
       grupo.appendChild(uso);
     }
 
     const textoX = caixa.x + raioIcone * 2 + 14 + 16;
-    const linhasTitulo = compacto && def.compacto ? def.compacto : def.titulo;
-    let baseY = caixa.y + (baixo && linhasTituloQuantidade(id) > 1 ? 24 : 30);
+    const linhasSub = compacto && def.subCompacto ? def.subCompacto : def.sub;
     const entreLinhas = grande && !compacto ? 22 : (baixo ? 18 : 19);
+    let baseY;
+    if (baixo) {
+      const alturaDoTexto = linhasTitulo.length * entreLinhas + (linhasSub ? linhasSub.length * 18 : 0);
+      baseY = caixa.y + (caixa.h - alturaDoTexto) / 2 + 13;
+    } else {
+      baseY = caixa.y + 30;
+    }
     linhasTitulo.forEach((linha) => {
       const texto = elSvg("text", { x: textoX, y: baseY }, grande && !compacto ? "dg-titulo-g" : "dg-titulo");
       texto.textContent = linha;
       grupo.appendChild(texto);
       baseY += entreLinhas;
     });
-    const linhasSub = compacto && def.subCompacto ? def.subCompacto : def.sub;
     if (linhasSub) {
       baseY += 2;
       linhasSub.forEach((linha) => {
@@ -4606,14 +4905,13 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
         baseY += 18;
       });
     }
-    if (baixo) desenharSelo(grupo, def.selo, caixa.x + caixa.w - larguraDoSelo(def.selo) - 12, caixa.y + caixa.h - 28);
-    else desenharSelo(grupo, def.selo, textoX, caixa.y + caixa.h - 32);
+    if (def.pilula) desenharPilula(grupo, def.pilula, caixa.x + 16, caixa.y + caixa.h - 34, 200);
     return grupo;
   }
 
-  function iniciarPiloto() {
-    const area = $("#piloto-diagrama");
-    const painel = $("#piloto-painel");
+  function iniciarProjeto() {
+    const area = $("#projeto-diagrama");
+    const painel = $("#projeto-painel");
     const botaoFluxo = $("#btn-fluxo");
     if (!area) return;
     const consultaCompacto = window.matchMedia("(max-width: 900px)");
@@ -4630,7 +4928,7 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
       const layout = calcularLayout(compacto);
       area.replaceChildren();
       svg = elSvg("svg", { viewBox: layout.caixa.x + " " + layout.caixa.y + " " + layout.caixa.w + " " + layout.caixa.h, role: "group",
-        "aria-label": "Diagrama do piloto: quatro fontes alimentam a base única do cliente, que alimenta a Bússola. A segunda carteira e a capacidade são ondas seguintes." },
+        "aria-label": "Diagrama do projeto: cinco fontes, entre elas a capacidade, alimentam a base única do cliente, com as duas carteiras, e a base alimenta a Bússola." },
         compacto ? "compacto" : "");
       const defs = elSvg("defs");
       ["p", "a"].forEach((variante) => {
@@ -4641,7 +4939,7 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
       svg.appendChild(defs);
 
       gruposArestas = layout.arestas.map((aresta) => {
-        const caminho = elSvg("path", { d: aresta.d, "data-de": aresta.de, "data-para": aresta.para }, "dg-aresta" + (aresta.onda ? " onda" : ""));
+        const caminho = elSvg("path", { d: aresta.d, "data-de": aresta.de, "data-para": aresta.para }, "dg-aresta");
         caminho.setAttribute("marker-end", "url(#dg-seta-p)");
         svg.appendChild(caminho);
         return caminho;
@@ -4702,10 +5000,6 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
       const def = NOS[id];
       const topo = el("div", "painel-topo");
       topo.appendChild(el("h3", null, def.titulo.join(" ")));
-      const selo = el("span", "selo " + (def.selo === "piloto" ? "selo-piloto" : "selo-onda"));
-      selo.appendChild(icone(def.selo === "piloto" ? "check" : "arco"));
-      selo.appendChild(document.createTextNode(def.selo === "piloto" ? "No piloto" : "Onda seguinte"));
-      topo.appendChild(selo);
       const colunas = el("div", "painel-colunas");
       [["Recebe", def.recebe], ["Entrega", def.entrega]].forEach((par) => {
         const coluna = el("div");
@@ -4730,7 +5024,7 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
       aplicarFoco();
     }
 
-    // Ao terminar, as cinco arestas do piloto ficam acesas até a próxima interação (hover, foco, clique ou novo fluxo)
+    // Ao terminar, todas as arestas ficam acesas até a próxima interação (hover, foco, clique ou novo fluxo)
     function terminarFluxo() {
       const camada = $(".dg-pulsos", area);
       if (camada) camada.replaceChildren();
@@ -4836,12 +5130,9 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
     const topo = el("div", "an-resposta-topo");
     const avatar = el("span", "an-avatar");
     avatar.appendChild(avatarMarca());
-    const seloPiloto = el("span", "selo selo-piloto");
-    seloPiloto.append(icone("check"), document.createTextNode("No piloto"));
-    topo.append(avatar, seloPiloto);
-    const seloMotor = el("span", "selo selo-onda");
+    topo.appendChild(avatar);
+    const seloMotor = el("span", "selo selo-motor");
     seloMotor.textContent = "Consulta às tabelas";
-    seloMotor.style.borderStyle = "solid";
     topo.appendChild(seloMotor);
     cartao.appendChild(topo);
 
@@ -4989,7 +5280,7 @@ window.BUS_LOGO = "<svg class=\"bus-logo-svg\" viewBox=\"0 0 114 27\" fill=\"non
     iniciarRevelacoes();
     iniciarCapa();
     iniciarHojeReserva();
-    iniciarPiloto();
+    iniciarProjeto();
     iniciarAmbiente();
     iniciarBussola();
     iniciarOrigem();
